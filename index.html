@@ -3,218 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Kopi Omwari</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Kopi Omwari — Cot Gapu, Bireuen</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 :root{
-  --black:#080808;--card:#111;--card2:#181818;
-  --border:rgba(255,255,255,0.07);
-  --gold:#D4A24C;--gold2:#F0C060;--green:#4ADE80;
-  --white:#fff;--muted:rgba(255,255,255,0.4);
-  --wa:#25D366;--red:#EF4444;
+  --black:#060608;
+  --dark:#0E0E12;
+  --card:#13131A;
+  --card2:#1A1A24;
+  --border:rgba(255,255,255,0.06);
+  --gold:#C9962A;
+  --gold2:#F0C060;
+  --gold-light:rgba(201,150,42,0.12);
+  --green:#3DD68C;
+  --green-light:rgba(61,214,140,0.1);
+  --white:#F5F5F7;
+  --muted:rgba(245,245,247,0.38);
+  --muted2:rgba(245,245,247,0.55);
+  --wa:#25D366;
+  --red:#FF453A;
+  --accent:#7B61FF;
 }
-html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;}
 
-/* ── SPLASH ── */
-#splash{position:fixed;inset:0;z-index:9999;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease;}
+/* ══ SPLASH ══ */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 1s ease;
+}
 #splash.hide{opacity:0;pointer-events:none;}
-.splash-svg-wrap{width:200px;height:200px;position:relative;margin-bottom:28px;}
-.ring{fill:none;stroke:white;stroke-linecap:round;stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawRing 0.8s ease forwards;}
+.splash-svg-wrap{width:180px;height:180px;margin-bottom:32px;}
+.ring{fill:none;stroke:rgba(255,255,255,0.9);stroke-linecap:round;stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawRing 0.9s cubic-bezier(0.4,0,0.2,1) forwards;}
 .ring1{stroke-width:7;animation-delay:0s;}
-.ring2{stroke-width:6.5;animation-delay:0.18s;}
-.ring3{stroke-width:6;animation-delay:0.36s;}
-.ring4{stroke-width:5.5;animation-delay:0.54s;}
-.ring5{stroke-width:5;animation-delay:0.72s;}
-.ring6{animation-delay:0.9s;}
-@keyframes drawRing{0%{stroke-dashoffset:2000;opacity:0;}15%{opacity:1;}100%{stroke-dashoffset:0;}}
-.splash-kopi{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:8px;color:#fff;opacity:0;transform:translateY(12px);animation:textUp 0.6s ease 1.3s forwards;}
-.splash-omwari{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:8px;color:var(--gold);opacity:0;transform:translateY(12px);animation:textUp 0.6s ease 1.5s forwards;}
-.splash-sub{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:4px;text-transform:uppercase;margin-top:14px;opacity:0;animation:textUp 0.5s ease 1.8s forwards;}
-.splash-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,162,76,0.5),transparent);margin:12px auto;animation:lineGrow 0.6s ease 1.7s forwards;}
-@keyframes textUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-@keyframes lineGrow{from{width:0;}to{width:100px;}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.ring2{stroke-width:6.5;animation-delay:0.16s;}
+.ring3{stroke-width:6;animation-delay:0.32s;}
+.ring4{stroke-width:5.5;animation-delay:0.48s;}
+.ring5{stroke-width:5;animation-delay:0.64s;}
+.ring6{animation-delay:0.8s;}
+@keyframes drawRing{0%{stroke-dashoffset:2000;opacity:0;}12%{opacity:1;}100%{stroke-dashoffset:0;}}
 
-/* ── APP ── */
+.splash-brand-row{display:flex;align-items:baseline;gap:10px;opacity:0;transform:translateY(14px);animation:fadeUp 0.7s ease 1.2s forwards;}
+.s-kopi{font-family:'Syne',sans-serif;font-size:30px;font-weight:400;letter-spacing:8px;color:rgba(255,255,255,0.9);}
+.s-omwari{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;letter-spacing:8px;color:var(--gold2);}
+.splash-tagline{
+  font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:4px;text-transform:uppercase;
+  margin-top:12px;opacity:0;animation:fadeUp 0.5s ease 1.5s forwards;
+}
+.splash-divider{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,150,42,0.4),transparent);
+  margin:14px auto;animation:grow 0.7s ease 1.4s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes grow{from{width:0;}to{width:100px;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
+@keyframes countUp{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+@keyframes slideRight{from{transform:translateX(-10px);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(201,150,42,0.15);}50%{box-shadow:0 0 40px rgba(201,150,42,0.3);}}
+
+/* ══ APP ══ */
 #app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden;}
 
-/* ── TOPBAR ── */
-nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;backdrop-filter:blur(20px);}
+/* ══ TOPBAR ══ */
+.topbar{
+  background:rgba(6,6,8,0.95);
+  border-bottom:1px solid var(--border);
+  padding:0 16px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;backdrop-filter:blur(24px);
+  position:relative;
+}
+.topbar::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,150,42,0.3),transparent);
+}
 .topbar-logo{display:flex;align-items:center;gap:10px;}
 .topbar-texts{display:flex;flex-direction:column;gap:1px;}
-.topbar-brand{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;line-height:1;}
-.topbar-brand span{color:var(--gold);}
-.topbar-loc{font-size:8px;color:rgba(255,255,255,0.28);letter-spacing:2.5px;text-transform:uppercase;font-weight:400;}
-.live-pill{display:flex;align-items:center;gap:5px;background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);border-radius:100px;padding:5px 11px;}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1s infinite;}
-.live-txt{font-size:9px;font-weight:800;color:var(--red);letter-spacing:1.5px;font-family:'Syne',sans-serif;}
+.topbar-brand{font-family:'Syne',sans-serif;font-size:14px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;line-height:1;color:var(--white);}
+.topbar-brand b{font-weight:800;color:var(--gold2);}
+.topbar-loc{font-size:8px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;font-weight:400;margin-top:1px;}
+.live-pill{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,69,58,0.1);border:1px solid rgba(255,69,58,0.2);
+  border-radius:100px;padding:5px 11px;
+}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 1s infinite;}
+.live-txt{font-size:9px;font-weight:700;color:var(--red);letter-spacing:1.5px;font-family:'Syne',sans-serif;}
 
-/* ── TICKER ── */
-.ticker{background:#050505;border-bottom:1px solid var(--border);overflow:hidden;padding:7px 0;white-space:nowrap;flex-shrink:0;}
-.ticker-inner{display:inline-flex;animation:tick 22s linear infinite;}
-.ti{display:inline-flex;align-items:center;gap:5px;padding:0 20px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--border);}
-.ti-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);}
-.ti-hi{color:var(--gold);font-weight:600;}
-@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ══ TICKER ══ */
+.ticker{
+  background:var(--dark);border-bottom:1px solid var(--border);
+  overflow:hidden;padding:7px 0;white-space:nowrap;flex-shrink:0;
+}
+.ticker-inner{display:inline-flex;animation:tick 24s linear infinite;}
+.ti{display:inline-flex;align-items:center;gap:6px;padding:0 22px;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--border);font-weight:500;}
+.ti-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.ti-hi{color:var(--gold2);font-weight:700;}
 
-/* ── TABS ── */
-.cat-tabs{display:flex;overflow-x:auto;flex-shrink:0;background:#0A0A0A;border-bottom:1px solid var(--border);scrollbar-width:none;padding:0 4px;}
+/* ══ TABS ══ */
+.cat-tabs{
+  display:flex;overflow-x:auto;flex-shrink:0;
+  background:var(--dark);border-bottom:1px solid var(--border);
+  scrollbar-width:none;padding:0 8px;
+}
 .cat-tabs::-webkit-scrollbar{display:none;}
-.cat-tab{flex-shrink:0;padding:10px 14px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
-.cat-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.cat-tab{
+  flex-shrink:0;padding:11px 14px;
+  font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);border:none;background:transparent;
+  cursor:pointer;border-bottom:2px solid transparent;
+  transition:all 0.2s;white-space:nowrap;
+}
+.cat-tab.active{color:var(--gold2);border-bottom-color:var(--gold);}
 
-/* ── CONTENT ── */
+/* ══ CONTENT ══ */
 #content{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding-bottom:120px;scroll-behavior:smooth;}
 #content::-webkit-scrollbar{display:none;}
 
-/* ── LIVE SECTION ── */
-.live-section{padding:16px;}
-.live-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.live-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;}
-.live-title span{color:var(--gold);}
-.week-badge{font-size:9px;color:var(--muted);letter-spacing:1.5px;border:1px solid var(--border);padding:3px 8px;border-radius:4px;font-family:'Inter',sans-serif;}
-.rank-cards{display:flex;flex-direction:column;gap:8px;}
-.rank-card{border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;border:1px solid transparent;cursor:pointer;transition:transform 0.15s;}
-.rank-card:active{transform:scale(0.98);}
-.rank-card.r1{background:linear-gradient(135deg,#1E1600,#2A1E00);border-color:rgba(212,162,76,0.35);}
-.rank-card.r2{background:linear-gradient(135deg,#101810,#141E14);border-color:rgba(74,222,128,0.2);}
-.rank-card.r3{background:var(--card);border-color:var(--border);}
-.rank-num{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;line-height:1;width:28px;text-align:center;flex-shrink:0;opacity:0.45;}
-.r1 .rank-num{color:var(--gold);}
-.r2 .rank-num{color:var(--green);}
-.r3 .rank-num{color:rgba(255,255,255,0.3);}
-.rank-info{flex:1;min-width:0;}
-.rank-name{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.r1 .rank-name{color:var(--gold2);}
-.r2 .rank-name{color:var(--green);}
-.r3 .rank-name{color:rgba(255,255,255,0.65);}
-.rank-sub{font-size:8.5px;color:var(--muted);margin-top:3px;letter-spacing:0.8px;font-weight:400;}
-.rank-right{text-align:right;flex-shrink:0;}
-.rank-count{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;line-height:1;}
-.r1 .rank-count{color:var(--gold);}
-.r2 .rank-count{color:var(--green);}
-.r3 .rank-count{color:rgba(255,255,255,0.45);}
-.rank-unit{font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:2px;}
-.rank-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.04);}
-.rank-bar{height:100%;transition:width 2s ease;}
-.r1 .rank-bar{background:linear-gradient(90deg,var(--gold),var(--gold2));}
-.r2 .rank-bar{background:linear-gradient(90deg,var(--green),#86efac);}
-.r3 .rank-bar{background:rgba(255,255,255,0.15);}
-.stats-row{display:flex;gap:8px;margin-top:10px;}
-.stat-box{flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 8px;text-align:center;}
-.stat-box .sv{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;}
-.stat-box .sl{font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+/* ══ HERO LIVE SECTION ══ */
+.live-hero{
+  padding:20px 16px 16px;
+  background:linear-gradient(180deg,rgba(201,150,42,0.05) 0%,transparent 100%);
+  border-bottom:1px solid var(--border);
+}
+.live-eyebrow{
+  display:flex;align-items:center;gap:8px;margin-bottom:14px;
+}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1s infinite;}
+.eyebrow-text{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);}
+.eyebrow-badge{
+  margin-left:auto;
+  background:var(--gold-light);border:1px solid rgba(201,150,42,0.25);
+  border-radius:4px;padding:2px 8px;
+  font-size:8px;color:var(--gold2);letter-spacing:1.5px;font-family:'Syne',sans-serif;font-weight:700;
+}
 
-/* ── MENU ── */
+/* LEADERBOARD */
+.leaderboard{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+
+.lb-card{
+  border-radius:12px;padding:14px 15px;
+  display:flex;align-items:center;gap:12px;
+  position:relative;overflow:hidden;
+  cursor:pointer;transition:transform 0.15s;
+  border:1px solid transparent;
+}
+.lb-card:active{transform:scale(0.985);}
+
+.lb-card.gold{
+  background:linear-gradient(135deg,#1C1500 0%,#241E00 100%);
+  border-color:rgba(201,150,42,0.35);
+  animation:glow 3s ease-in-out infinite;
+}
+.lb-card.silver{
+  background:linear-gradient(135deg,#101810 0%,#141E14 100%);
+  border-color:rgba(61,214,140,0.2);
+}
+.lb-card.bronze{
+  background:var(--card);
+  border-color:rgba(255,255,255,0.07);
+}
+
+/* Shimmer accent top */
+.lb-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+
+.lb-rank{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  width:26px;text-align:center;flex-shrink:0;opacity:0.5;
+  letter-spacing:0;
+}
+.gold .lb-rank{color:var(--gold2);opacity:0.8;}
+.silver .lb-rank{color:var(--green);opacity:0.7;}
+.bronze .lb-rank{color:rgba(255,255,255,0.3);}
+
+.lb-medal{font-size:18px;flex-shrink:0;}
+
+.lb-info{flex:1;min-width:0;}
+.lb-name{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.gold .lb-name{color:var(--gold2);}
+.silver .lb-name{color:var(--green);}
+.bronze .lb-name{color:rgba(255,255,255,0.6);}
+.lb-sub{font-size:9px;color:var(--muted);margin-top:3px;letter-spacing:0.5px;font-weight:500;}
+
+.lb-right{text-align:right;flex-shrink:0;}
+.lb-count{
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;line-height:1;
+  animation:countUp 0.5s ease forwards;opacity:0;
+}
+.gold .lb-count{color:var(--gold);}
+.silver .lb-count{color:var(--green);}
+.bronze .lb-count{color:rgba(255,255,255,0.4);}
+.lb-unit{font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:2px;font-weight:500;}
+
+/* BAR */
+.lb-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.03);}
+.lb-bar{height:100%;transition:width 2.2s cubic-bezier(0.4,0,0.2,1);width:0%;}
+.gold .lb-bar{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.silver .lb-bar{background:linear-gradient(90deg,var(--green),#86efac);}
+.bronze .lb-bar{background:rgba(255,255,255,0.12);}
+
+/* TAP HINT */
+.tap-hint{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  font-size:8px;color:var(--muted);letter-spacing:1px;
+  opacity:0.6;
+}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:8px;}
+.stat-box{
+  flex:1;border-radius:10px;padding:11px 10px;text-align:center;
+  background:var(--card);border:1px solid var(--border);
+}
+.stat-box .sv{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;display:block;}
+.stat-box .sl{font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;display:block;font-weight:500;}
+
+/* ══ SECTION TAGLINE (Bireuen culture) ══ */
+.section-tagline{
+  margin:20px 16px 0;
+  background:linear-gradient(135deg,#0E0E12,#13131A);
+  border:1px solid var(--border);border-radius:14px;
+  padding:18px 16px;position:relative;overflow:hidden;
+}
+.section-tagline::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.tagline-label{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.tagline-main{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--white);line-height:1.3;margin-bottom:4px;}
+.tagline-sub{font-size:11px;color:var(--muted2);line-height:1.5;font-weight:400;}
+
+/* ══ MENU SECTION ══ */
 .menu-section{padding:4px 16px;}
-.menu-section-title{display:flex;align-items:center;gap:10px;margin:16px 0 10px;}
-.ms-badge{font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;flex-shrink:0;}
-.ms-badge.elit{background:var(--gold);color:#0A0A0A;}
-.ms-badge.botol{background:rgba(212,162,76,0.1);color:var(--gold);border:1px solid rgba(212,162,76,0.4);}
-.ms-badge.medium{background:rgba(212,162,76,0.08);color:var(--gold);border:1px solid rgba(212,162,76,0.25);}
-.ms-badge.easy{background:rgba(74,222,128,0.07);color:var(--green);border:1px solid rgba(74,222,128,0.2);}
-.ms-badge.majority{background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.35);border:1px solid var(--border);}
+.menu-sec-hdr{display:flex;align-items:center;gap:10px;margin:20px 0 10px;}
+.ms-badge{font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;flex-shrink:0;border-radius:4px;}
+.ms-badge.elit{background:var(--gold);color:#060608;}
+.ms-badge.botol{background:var(--gold-light);color:var(--gold2);border:1px solid rgba(201,150,42,0.3);}
+.ms-badge.medium{background:rgba(201,150,42,0.08);color:var(--gold2);border:1px solid rgba(201,150,42,0.2);}
+.ms-badge.easy{background:var(--green-light);color:var(--green);border:1px solid rgba(61,214,140,0.2);}
+.ms-badge.majority{background:rgba(255,255,255,0.04);color:var(--muted2);border:1px solid var(--border);}
 .ms-line{flex:1;height:1px;background:var(--border);}
-.menu-item{background:var(--card);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;padding:11px 13px;margin-bottom:7px;transition:all 0.2s;position:relative;overflow:hidden;}
-.menu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border);transition:background 0.2s;}
-.menu-item.has-qty{border-color:rgba(212,162,76,0.3);}
+
+/* ══ MENU ITEM ══ */
+.menu-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;display:flex;align-items:center;
+  padding:12px 14px;margin-bottom:7px;
+  transition:border-color 0.2s,background 0.2s;
+  position:relative;overflow:hidden;
+}
+.menu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border);border-radius:3px 0 0 3px;transition:background 0.2s;}
+.menu-item.has-qty{border-color:rgba(201,150,42,0.3);background:linear-gradient(135deg,#141208,#171712);}
 .menu-item.has-qty::before{background:var(--gold);}
-.menu-item.feat{background:linear-gradient(135deg,#141208,#1A1A0E);border-color:rgba(212,162,76,0.1);}
+.menu-item.feat{background:linear-gradient(135deg,#141208,#1A1A0E);border-color:rgba(201,150,42,0.1);}
 .mi-info{flex:1;min-width:0;}
-.mi-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mi-name{font-family:'Syne',sans-serif;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .menu-item.feat .mi-name{color:var(--gold2);}
-.mi-sub{font-size:9px;color:var(--muted);margin-top:2px;}
-.mi-price{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);flex-shrink:0;margin:0 10px;}
+.mi-sub{font-size:9px;color:var(--muted);margin-top:2px;font-weight:400;letter-spacing:0.3px;}
+.mi-price{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);flex-shrink:0;margin:0 11px;}
 .qty-ctrl{display:flex;align-items:center;flex-shrink:0;}
-.qb{width:26px;height:26px;border:1px solid var(--border);background:var(--card2);color:var(--white);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;user-select:none;}
-.qb:active{transform:scale(0.9);}
-.qb.minus{border-radius:6px 0 0 6px;}
-.qb.plus{border-radius:0 6px 6px 0;background:var(--gold);color:#0A0A0A;border-color:var(--gold);}
-.qn{width:30px;height:26px;background:#080808;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);}
-.qn.on{color:var(--gold);}
+.qb{
+  width:27px;height:27px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:var(--card2);color:var(--white);
+  font-size:16px;font-weight:400;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;user-select:none;
+}
+.qb:active{transform:scale(0.88);}
+.qb.minus{border-radius:7px 0 0 7px;}
+.qb.plus{border-radius:0 7px 7px 0;background:var(--gold);color:#060608;border-color:var(--gold);font-weight:700;}
+.qn{
+  width:31px;height:27px;background:rgba(0,0,0,0.4);
+  border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--white);
+}
+.qn.on{color:var(--gold2);}
 
-/* ── BOTOL BANNER ── */
-.botol-banner{background:linear-gradient(135deg,#1A1400,#221A00);border:1px solid rgba(212,162,76,0.25);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+/* BOTOL BANNER */
+.botol-banner{
+  background:linear-gradient(135deg,#1A1400,#201800);
+  border:1px solid rgba(201,150,42,0.2);border-radius:12px;
+  padding:13px 14px;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
 
-/* ── BOTTOM BAR ── */
-.order-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.97);border-top:1px solid var(--border);padding:10px 16px 24px;backdrop-filter:blur(20px);transform:translateY(100%);transition:transform 0.3s ease;}
+/* ══ BOTTOM ORDER BAR ══ */
+.order-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(6,6,8,0.97);
+  border-top:1px solid rgba(201,150,42,0.2);
+  padding:10px 16px 28px;
+  backdrop-filter:blur(24px);
+  transform:translateY(100%);transition:transform 0.3s ease;
+}
 .order-bar.visible{transform:translateY(0);}
 .order-bar-inner{display:flex;align-items:center;gap:10px;}
 .order-summary{flex:1;}
-.order-count{font-size:10px;color:var(--muted);letter-spacing:1px;}
-.order-total{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--gold);line-height:1.1;}
-.checkout-btn{background:var(--gold);border:none;border-radius:10px;padding:12px 20px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:#0A0A0A;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.2s;flex-shrink:0;box-shadow:0 4px 20px rgba(212,162,76,0.3);}
+.order-count{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:500;}
+.order-total{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--gold2);line-height:1.1;}
+.checkout-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;border-radius:10px;padding:13px 22px;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:800;
+  color:#060608;letter-spacing:1px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;
+  transition:all 0.2s;flex-shrink:0;
+  box-shadow:0 4px 24px rgba(201,150,42,0.35);
+}
 .checkout-btn:active{transform:scale(0.97);}
 
-/* ── PANELS ── */
+/* ══ PANELS ══ */
 .fs-panel{position:fixed;inset:0;z-index:200;background:var(--black);transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;overflow:hidden;}
 .fs-panel.open{transform:translateX(0);}
-.fs-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;background:rgba(8,8,8,0.98);}
-.back-btn{width:34px;height:34px;border-radius:8px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;flex-shrink:0;transition:all 0.2s;}
+.fs-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-shrink:0;background:rgba(6,6,8,0.98);}
+.back-btn{width:34px;height:34px;border-radius:8px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;flex-shrink:0;}
 .fs-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;}
 .fs-body{flex:1;overflow-y:auto;padding:16px;scrollbar-width:none;padding-bottom:100px;}
 .fs-body::-webkit-scrollbar{display:none;}
-.fs-footer{padding:12px 16px 28px;border-top:1px solid var(--border);background:rgba(8,8,8,0.98);flex-shrink:0;}
-.oi{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 13px;margin-bottom:7px;}
+.fs-footer{padding:12px 16px 28px;border-top:1px solid var(--border);background:rgba(6,6,8,0.98);flex-shrink:0;}
+
+.oi{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;margin-bottom:7px;}
 .oi-name{font-size:12px;font-weight:600;}
 .oi-detail{font-size:10px;color:var(--muted);margin-top:2px;}
 .oi-amt{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);}
 .total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--border);margin-top:4px;}
 .total-lbl{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
-.total-big{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
-.pay-opt{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;}
+.total-big{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--gold2);}
+
+.pay-opt{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:16px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;}
 .pay-opt.sel{border-color:var(--gold);background:linear-gradient(135deg,#1A1400,#161208);}
-.pay-bank{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
-.pay-rek{font-size:17px;font-weight:300;color:var(--white);letter-spacing:1px;}
-.pay-name{font-size:10px;color:var(--muted);margin-top:2px;}
-.pay-total-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:14px;}
-.pay-total-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
-.pay-total-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
-.warn{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.2);border-left:3px solid var(--red);border-radius:6px;padding:10px 13px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.55);line-height:1.6;}
+.pay-bank{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pay-rek{font-size:18px;font-weight:300;color:var(--white);letter-spacing:2px;}
+.pay-name{font-size:10px;color:var(--muted);margin-top:3px;}
+.pay-total-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px;}
+.pay-total-lbl{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.pay-total-val{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--gold2);}
+.warn{background:rgba(255,69,58,0.05);border:1px solid rgba(255,69,58,0.15);border-left:3px solid var(--red);border-radius:8px;padding:12px 14px;margin-bottom:12px;font-size:11px;color:rgba(245,245,247,0.55);line-height:1.6;}
 .warn strong{color:var(--red);}
-.cs{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:13px;margin-bottom:8px;}
-.cs-num{width:24px;height:24px;border-radius:50%;background:var(--green);color:#0A0A0A;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cs{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;}
+.cs-num{width:24px;height:24px;border-radius:50%;background:var(--green);color:#060608;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .cs-title{font-size:12px;font-weight:600;}
-.cs-desc{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
-.sp{display:flex;align-items:center;margin-bottom:14px;padding:0 4px;}
+.cs-desc{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+.sp{display:flex;align-items:center;margin-bottom:16px;padding:0 4px;}
 .sp-node{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
 .sp-c{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:9px;font-weight:800;color:var(--muted);transition:all 0.3s;}
-.sp-c.act{border-color:var(--gold);background:var(--gold);color:#0A0A0A;}
-.sp-c.done{border-color:var(--green);background:var(--green);color:#0A0A0A;}
-.sp-l{font-size:7.5px;color:var(--muted);text-align:center;white-space:nowrap;}
-.sp-l.act{color:var(--gold);}
+.sp-c.act{border-color:var(--gold);background:var(--gold);color:#060608;}
+.sp-c.done{border-color:var(--green);background:var(--green);color:#060608;}
+.sp-l{font-size:7.5px;color:var(--muted);text-align:center;white-space:nowrap;font-weight:500;}
+.sp-l.act{color:var(--gold2);}
 .sp-l.done{color:var(--green);}
 .sp-line{flex:1;height:2px;background:var(--border);margin:0 2px;margin-bottom:12px;transition:background 0.3s;}
 .sp-line.done{background:var(--green);}
-.btn-gold{width:100%;background:var(--gold);border:none;border-radius:10px;padding:14px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#0A0A0A;letter-spacing:1px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+
+.btn-gold{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:12px;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#060608;letter-spacing:1px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn-gold:active{transform:scale(0.98);}
-.btn-wa{width:100%;background:var(--wa);border:none;border-radius:10px;padding:14px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
+.btn-wa{width:100%;background:var(--wa);border:none;border-radius:12px;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
 .btn-wa svg{width:18px;height:18px;fill:white;flex-shrink:0;}
-.btn-ghost{width:100%;background:transparent;border:1px solid var(--border);border-radius:10px;padding:11px;font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:1px;transition:all 0.2s;margin-top:8px;}
+.btn-ghost{width:100%;background:transparent;border:1px solid var(--border);border-radius:12px;padding:12px;font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:1px;transition:all 0.2s;margin-top:8px;font-weight:500;}
 </style>
 </head>
 <body>
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-svg-wrap">
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <div class="splash-svg-wrap"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
   <circle class="ring ring1" cx="100" cy="100" r="93" fill="none"/>
   <circle class="ring ring2" cx="100" cy="100" r="75" fill="none"/>
   <circle class="ring ring3" cx="100" cy="100" r="57" fill="none"/>
   <circle class="ring ring4" cx="100" cy="100" r="40" fill="none"/>
   <circle class="ring ring5" cx="100" cy="100" r="24" fill="none"/>
   <circle class="ring ring6" cx="100" cy="100" r="8" stroke="none" fill="white"/>
-</svg>
-  </div>
+</svg></div>
   <div style="text-align:center;">
-    <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
-      <div class="splash-kopi">KOPI</div>
-      <div class="splash-omwari">OMWARI</div>
+    <div class="splash-brand-row">
+      <span class="s-kopi">KOPI</span>
+      <span class="s-omwari">OMWARI</span>
     </div>
-    <div class="splash-line"></div>
-    <div class="splash-sub">COT GAPU &nbsp;·&nbsp; BIREUEN &nbsp;·&nbsp; ACEH</div>
+    <div class="splash-divider"></div>
+    <div class="splash-tagline">Cot Gapu &nbsp;·&nbsp; Bireuen &nbsp;·&nbsp; Aceh</div>
   </div>
 </div>
 
@@ -222,7 +404,7 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
 <div id="app">
 
   <!-- TOPBAR -->
-  <nav class="topbar">
+  <div class="topbar">
     <div class="topbar-logo">
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="flex-shrink:0;">
   <circle cx="100" cy="100" r="93" fill="none" stroke="white" stroke-width="7"/>
@@ -233,7 +415,7 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
   <circle cx="100" cy="100" r="8" fill="white" stroke="none"/>
 </svg>
       <div class="topbar-texts">
-        <div class="topbar-brand">KOPI<span>OMWARI</span></div>
+        <div class="topbar-brand">KOPI <b>OMWARI</b></div>
         <div class="topbar-loc">Cot Gapu &nbsp;·&nbsp; Bireuen</div>
       </div>
     </div>
@@ -241,21 +423,23 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
       <div class="live-dot"></div>
       <div class="live-txt">LIVE</div>
     </div>
-  </nav>
+  </div>
 
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-inner">
-      <div class="ti"><div class="ti-dot"></div>KOPI ARENILA <span class="ti-hi">#1 THIS WEEK</span></div>
-      <div class="ti"><div class="ti-dot"></div>SEN–SAB <span class="ti-hi">09:00 – 00:00</span></div>
-      <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI ISTIMEWA <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>SEN – SAB <span class="ti-hi">09:00 – 00:00</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
       <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
       <div class="ti"><div class="ti-dot"></div>KOPI BOTOL <span class="ti-hi">27K – 95K</span></div>
-      <div class="ti"><div class="ti-dot"></div>KOPI ARENILA <span class="ti-hi">#1 THIS WEEK</span></div>
-      <div class="ti"><div class="ti-dot"></div>SEN–SAB <span class="ti-hi">09:00 – 00:00</span></div>
       <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI ISTIMEWA <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>SEN – SAB <span class="ti-hi">09:00 – 00:00</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
       <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
       <div class="ti"><div class="ti-dot"></div>KOPI BOTOL <span class="ti-hi">27K – 95K</span></div>
+      <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
     </div>
   </div>
 
@@ -272,57 +456,95 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
   <!-- CONTENT -->
   <div id="content">
 
-    <!-- LIVE -->
-    <div class="live-section" id="sec-live">
-      <div class="live-header">
-        <div class="live-title">TOP 3 <span>WEEKLY</span></div>
-        <div class="week-badge">7 HARI</div>
+    <!-- LIVE SECTION -->
+    <div id="sec-live">
+      <div class="live-hero">
+        <div class="live-eyebrow">
+          <div class="eyebrow-dot"></div>
+          <div class="eyebrow-text">Weekly Performance</div>
+          <div class="eyebrow-badge">7 HARI</div>
+        </div>
+
+        <div class="leaderboard">
+          <!-- #1 ISTIMEWA -->
+          <div class="lb-card gold" onclick="addFromRank('Kopi Istimewa',22000)">
+            <div class="lb-rank">#1</div>
+            <div class="lb-medal">🥇</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Istimewa</div>
+              <div class="lb-sub">Kreasi Barista · Eksklusif · Tap untuk Order</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-count" id="cnt1" style="animation-delay:1.4s">0</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar" id="bar1"></div></div>
+          </div>
+
+          <!-- #2 ARENILA -->
+          <div class="lb-card silver" onclick="addFromRank('Kopi Arenila',22000)">
+            <div class="lb-rank">#2</div>
+            <div class="lb-medal">🥈</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Arenila</div>
+              <div class="lb-sub">Gula Aren Spesial · Fan Favourite · Tap untuk Order</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-count" id="cnt2" style="animation-delay:1.6s">0</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar" id="bar2"></div></div>
+          </div>
+
+          <!-- #3 WARISAN -->
+          <div class="lb-card bronze" onclick="addFromRank('Kopi Warisan',22000)">
+            <div class="lb-rank">#3</div>
+            <div class="lb-medal">🥉</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Warisan</div>
+              <div class="lb-sub">Racikan Turun-Temurun · Signature · Tap untuk Order</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-count" id="cnt3" style="animation-delay:1.8s">0</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bar-wrap"><div class="lb-bar" id="bar3"></div></div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box"><span class="sv" style="color:var(--gold2)">2.100</span><span class="sl">Total Cup</span></div>
+          <div class="stat-box"><span class="sv" style="color:var(--green)">7 Hari</span><span class="sl">Periode</span></div>
+          <div class="stat-box"><span class="sv" style="color:var(--red)">🔥 Hot</span><span class="sl">Status</span></div>
+        </div>
       </div>
-      <div class="rank-cards">
-        <div class="rank-card r1" onclick="addFromRank('Kopi Arenila',22000)">
-          <div class="rank-num">#1</div>
-          <div class="rank-info"><div class="rank-name">Kopi Arenila</div><div class="rank-sub">Varian Elit · Fan Favourite · Tap to Order</div></div>
-          <div class="rank-right"><div class="rank-count" id="cnt1">0</div><div class="rank-unit">Cup Terjual</div></div>
-          <div class="rank-bar-wrap"><div class="rank-bar" id="bar1" style="width:0%"></div></div>
-        </div>
-        <div class="rank-card r2" onclick="addFromRank('Kopi Warisan',22000)">
-          <div class="rank-num">#2</div>
-          <div class="rank-info"><div class="rank-name">Kopi Warisan</div><div class="rank-sub">Varian Elit · Signature · Tap to Order</div></div>
-          <div class="rank-right"><div class="rank-count" id="cnt2">0</div><div class="rank-unit">Cup Terjual</div></div>
-          <div class="rank-bar-wrap"><div class="rank-bar" id="bar2" style="width:0%"></div></div>
-        </div>
-        <div class="rank-card r3" onclick="addFromRank('Kopi Pandan',22000)">
-          <div class="rank-num">#3</div>
-          <div class="rank-info"><div class="rank-name">Kopi Pandan</div><div class="rank-sub">Varian Elit · Herbal · Tap to Order</div></div>
-          <div class="rank-right"><div class="rank-count" id="cnt3">0</div><div class="rank-unit">Cup Terjual</div></div>
-          <div class="rank-bar-wrap"><div class="rank-bar" id="bar3" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat-box"><div class="sv" style="color:var(--gold)">998</div><div class="sl">Total Cup</div></div>
-        <div class="stat-box"><div class="sv" style="color:var(--green)">7 Hari</div><div class="sl">Periode</div></div>
-        <div class="stat-box"><div class="sv" style="color:var(--red)">🔥</div><div class="sl">Status</div></div>
+
+      <!-- TAGLINE BIREUEN -->
+      <div class="section-tagline">
+        <div class="tagline-label">// Dari Bireuen, Untuk Bireuen</div>
+        <div class="tagline-main">Kopi Terbaik<br>di Cot Gapu.</div>
+        <div class="tagline-sub">Racikan asli, rasa yang melekat. Buka setiap Senin–Sabtu dari pagi hingga tengah malam.</div>
       </div>
     </div>
 
     <!-- BOTOL -->
     <div class="menu-section" id="sec-botol">
-      <div class="menu-section-title"><div class="ms-badge botol">🍶 Kopi Botol</div><div class="ms-line"></div></div>
+      <div class="menu-sec-hdr"><div class="ms-badge botol">🍶 Kopi Botol</div><div class="ms-line"></div></div>
       <div class="botol-banner">
-        <span style="font-size:20px;">🍶</span>
+        <span style="font-size:22px;">🍶</span>
         <div>
-          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1px;">WARISAN · ARENILA · PANDAN</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:3px;">Sebutkan varian saat order · Tersedia kapanpun</div>
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--gold2);letter-spacing:1px;">WARISAN · ARENILA · PANDAN</div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;font-weight:400;">Sebutkan varian saat order · Tersedia kapanpun</div>
         </div>
       </div>
-      <div class="menu-item feat" data-name="Kopi Botol 250ml" data-price="27000"><div class="mi-info"><div class="mi-name">Kopi Botol 250 ML</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">27K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
-      <div class="menu-item feat" data-name="Kopi Botol 500ml" data-price="50000"><div class="mi-info"><div class="mi-name">Kopi Botol 500 ML</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">50K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
-      <div class="menu-item feat" data-name="Kopi Botol 1000ml" data-price="95000"><div class="mi-info"><div class="mi-name">Kopi Botol 1000 ML</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">95K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
+      <div class="menu-item feat" data-name="Kopi Botol 250ml" data-price="27000"><div class="mi-info"><div class="mi-name">Kopi Botol 250 ML</div><div class="mi-sub">Warisan / Arenila / Pandan · Sebutkan varian</div></div><div class="mi-price">27K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
+      <div class="menu-item feat" data-name="Kopi Botol 500ml" data-price="50000"><div class="mi-info"><div class="mi-name">Kopi Botol 500 ML</div><div class="mi-sub">Warisan / Arenila / Pandan · Sebutkan varian</div></div><div class="mi-price">50K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
+      <div class="menu-item feat" data-name="Kopi Botol 1000ml" data-price="95000"><div class="mi-info"><div class="mi-name">Kopi Botol 1000 ML</div><div class="mi-sub">Warisan / Arenila / Pandan · Sebutkan varian</div></div><div class="mi-price">95K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
     </div>
 
     <!-- ELIT -->
     <div class="menu-section" id="sec-elit">
-      <div class="menu-section-title"><div class="ms-badge elit">Varian Elit</div><div class="ms-line"></div></div>
+      <div class="menu-sec-hdr"><div class="ms-badge elit">Varian Elit</div><div class="ms-line"></div></div>
       <div class="menu-item feat" data-name="Kopi Warisan" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Warisan</div><div class="mi-sub">Racikan turun-temurun · Signature</div></div><div class="mi-price">22K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item feat" data-name="Kopi Arenila" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Arenila</div><div class="mi-sub">Gula aren spesial · Fan favourite</div></div><div class="mi-price">22K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item feat" data-name="Kopi Aren" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Aren</div><div class="mi-sub">Manis alami · Creamy</div></div><div class="mi-price">22K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
@@ -336,7 +558,7 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
 
     <!-- MEDIUM -->
     <div class="menu-section" id="sec-medium">
-      <div class="menu-section-title"><div class="ms-badge medium">Varian Medium</div><div class="ms-line"></div></div>
+      <div class="menu-sec-hdr"><div class="ms-badge medium">Varian Medium</div><div class="ms-line"></div></div>
       <div class="menu-item" data-name="Kopi Hazelnut" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Hazelnut</div><div class="mi-sub">Nutty · Smooth</div></div><div class="mi-price">20K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Kopi Semangka" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Semangka</div><div class="mi-sub">Segar · Fruity fusion</div></div><div class="mi-price">20K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Kopi Caramel" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Caramel</div><div class="mi-sub">Sweet · Karamel asli</div></div><div class="mi-price">20K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
@@ -348,7 +570,7 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
 
     <!-- EASY -->
     <div class="menu-section" id="sec-easy">
-      <div class="menu-section-title"><div class="ms-badge easy">Varian Easy</div><div class="ms-line"></div></div>
+      <div class="menu-sec-hdr"><div class="ms-badge easy">Varian Easy</div><div class="ms-line"></div></div>
       <div class="menu-item" data-name="Matcha" data-price="15000"><div class="mi-info"><div class="mi-name">Matcha</div><div class="mi-sub">Green tea · Earthy</div></div><div class="mi-price">15K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Strawberry" data-price="15000"><div class="mi-info"><div class="mi-name">Strawberry</div><div class="mi-sub">Fruity · Manis segar</div></div><div class="mi-price">15K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Blueberry" data-price="15000"><div class="mi-info"><div class="mi-name">Blueberry</div><div class="mi-sub">Fruity · Antioksidan</div></div><div class="mi-price">15K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
@@ -361,7 +583,7 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
 
     <!-- MAYORITAS -->
     <div class="menu-section" id="sec-mayoritas">
-      <div class="menu-section-title"><div class="ms-badge majority">Varian Mayoritas</div><div class="ms-line"></div></div>
+      <div class="menu-sec-hdr"><div class="ms-badge majority">Varian Mayoritas</div><div class="ms-line"></div></div>
       <div class="menu-item" data-name="Espresso" data-price="11000"><div class="mi-info"><div class="mi-name">Espresso</div><div class="mi-sub">Pure shot · Strong</div></div><div class="mi-price">11K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Sanger Panas" data-price="13000"><div class="mi-info"><div class="mi-name">Sanger Panas</div><div class="mi-sub">Khas Aceh · Hot</div></div><div class="mi-price">13K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Sanger Dingin" data-price="16000"><div class="mi-info"><div class="mi-name">Sanger Dingin</div><div class="mi-sub">Khas Aceh · Iced</div></div><div class="mi-price">16K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
@@ -372,9 +594,10 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
       <div class="menu-item" data-name="Arummanis" data-price="13000"><div class="mi-info"><div class="mi-name">Arummanis</div><div class="mi-sub">Manis · Khas lokal</div></div><div class="mi-price">13K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
       <div class="menu-item" data-name="Greentea" data-price="10000"><div class="mi-info"><div class="mi-name">Greentea</div><div class="mi-sub">Light · Herbal</div></div><div class="mi-price">10K</div><div class="qty-ctrl"><button class="qb minus" onclick="uq(this,-1)">−</button><div class="qn">0</div><button class="qb plus" onclick="uq(this,1)">+</button></div></div>
     </div>
-  </div>
 
-  <!-- BOTTOM ORDER BAR -->
+  </div><!-- end content -->
+
+  <!-- BOTTOM BAR -->
   <div class="order-bar" id="orderBar">
     <div class="order-bar-inner">
       <div class="order-summary">
@@ -386,34 +609,18 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
   </div>
 </div>
 
-<!-- PANEL 1: CHECKOUT -->
+<!-- PANEL 1 -->
 <div class="fs-panel" id="p1">
   <div class="fs-header"><div class="back-btn" onclick="closePanel('p1')">←</div><div class="fs-title">🛒 Ringkasan Pesanan</div></div>
-  <div style="padding:12px 16px 0;">
-    <div class="sp">
-      <div class="sp-node"><div class="sp-c act">1</div><div class="sp-l act">Pesanan</div></div>
-      <div class="sp-line"></div>
-      <div class="sp-node"><div class="sp-c">2</div><div class="sp-l">Bayar</div></div>
-      <div class="sp-line"></div>
-      <div class="sp-node"><div class="sp-c">3</div><div class="sp-l">Kirim Bukti</div></div>
-    </div>
-  </div>
+  <div style="padding:12px 16px 0;"><div class="sp"><div class="sp-node"><div class="sp-c act">1</div><div class="sp-l act">Pesanan</div></div><div class="sp-line"></div><div class="sp-node"><div class="sp-c">2</div><div class="sp-l">Bayar</div></div><div class="sp-line"></div><div class="sp-node"><div class="sp-c">3</div><div class="sp-l">Kirim Bukti</div></div></div></div>
   <div class="fs-body"><div id="p1Items"></div><div class="total-row"><span class="total-lbl">Total</span><span class="total-big" id="p1Total">Rp 0</span></div></div>
   <div class="fs-footer"><button class="btn-gold" onclick="openPanel('p2')">💳 Lanjut ke Pembayaran →</button><button class="btn-ghost" onclick="closePanel('p1')">← Kembali ke Menu</button></div>
 </div>
 
-<!-- PANEL 2: BAYAR -->
+<!-- PANEL 2 -->
 <div class="fs-panel" id="p2">
   <div class="fs-header"><div class="back-btn" onclick="openPanel('p1')">←</div><div class="fs-title">💳 Pembayaran</div></div>
-  <div style="padding:12px 16px 0;">
-    <div class="sp">
-      <div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Pesanan</div></div>
-      <div class="sp-line done"></div>
-      <div class="sp-node"><div class="sp-c act">2</div><div class="sp-l act">Bayar</div></div>
-      <div class="sp-line"></div>
-      <div class="sp-node"><div class="sp-c">3</div><div class="sp-l">Kirim Bukti</div></div>
-    </div>
-  </div>
+  <div style="padding:12px 16px 0;"><div class="sp"><div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Pesanan</div></div><div class="sp-line done"></div><div class="sp-node"><div class="sp-c act">2</div><div class="sp-l act">Bayar</div></div><div class="sp-line"></div><div class="sp-node"><div class="sp-c">3</div><div class="sp-l">Kirim Bukti</div></div></div></div>
   <div class="fs-body">
     <div class="pay-total-box"><div class="pay-total-lbl">Transfer sebesar</div><div class="pay-total-val" id="p2Total">Rp 0</div></div>
     <div class="pay-opt sel"><div class="pay-bank">Bank Syariah Indonesia (BSI)</div><div class="pay-rek">7216668396</div><div class="pay-name">a.n. Ian Mahendra</div></div>
@@ -422,20 +629,12 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
   <div class="fs-footer"><button class="btn-gold" onclick="openPanel('p3')">✅ Sudah Transfer →</button></div>
 </div>
 
-<!-- PANEL 3: KIRIM BUKTI -->
+<!-- PANEL 3 -->
 <div class="fs-panel" id="p3">
   <div class="fs-header"><div class="back-btn" onclick="openPanel('p2')">←</div><div class="fs-title">📲 Kirim Bukti</div></div>
-  <div style="padding:12px 16px 0;">
-    <div class="sp">
-      <div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Pesanan</div></div>
-      <div class="sp-line done"></div>
-      <div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Bayar</div></div>
-      <div class="sp-line done"></div>
-      <div class="sp-node"><div class="sp-c act">3</div><div class="sp-l act">Kirim Bukti</div></div>
-    </div>
-  </div>
+  <div style="padding:12px 16px 0;"><div class="sp"><div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Pesanan</div></div><div class="sp-line done"></div><div class="sp-node"><div class="sp-c done">✓</div><div class="sp-l done">Bayar</div></div><div class="sp-line done"></div><div class="sp-node"><div class="sp-c act">3</div><div class="sp-l act">Kirim Bukti</div></div></div></div>
   <div class="fs-body">
-    <div style="text-align:center;padding:12px 0 20px;"><div style="font-size:44px;margin-bottom:8px;">🎉</div><div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--green);">Transfer Berhasil!</div><div style="font-size:11px;color:var(--muted);margin-top:5px;">Satu langkah lagi — kirim bukti ke admin</div></div>
+    <div style="text-align:center;padding:16px 0 20px;"><div style="font-size:48px;margin-bottom:10px;">🎉</div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);">Transfer Berhasil!</div><div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;">Satu langkah lagi — kirim bukti ke admin<br>dan kopi kamu segera disiapkan.</div></div>
     <div class="cs"><div class="cs-num">1</div><div><div class="cs-title">Screenshot bukti transfer</div><div class="cs-desc">Ambil screenshot dari aplikasi banking kamu</div></div></div>
     <div class="cs"><div class="cs-num">2</div><div><div class="cs-title">Tap tombol WhatsApp di bawah</div><div class="cs-desc">Pesan otomatis sudah berisi detail order & total</div></div></div>
     <div class="cs"><div class="cs-num">3</div><div><div class="cs-title">Kirim screenshot ke admin</div><div class="cs-desc">Admin konfirmasi dalam 5 menit · Kopi disiapkan ☕</div></div></div>
@@ -452,20 +651,31 @@ nav.topbar{background:rgba(8,8,8,0.98);border-bottom:1px solid var(--border);pad
 const WA='6282315339915';
 let cart={};
 
+// Splash + counters
 setTimeout(()=>{
   document.getElementById('splash').classList.add('hide');
-  setTimeout(()=>document.getElementById('splash').style.display='none',800);
-  anim('cnt1',600); anim('cnt2',210); anim('cnt3',188);
+  setTimeout(()=>document.getElementById('splash').style.display='none',1000);
+  // Animate counters: #1 Istimewa=850, #2 Arenila=750, #3 Warisan=500
+  anim('cnt1',850,1400);
+  anim('cnt2',750,1600);
+  anim('cnt3',500,1800);
   setTimeout(()=>{
     document.getElementById('bar1').style.width='100%';
-    document.getElementById('bar2').style.width=Math.round(210/600*100)+'%';
-    document.getElementById('bar3').style.width=Math.round(188/600*100)+'%';
-  },200);
+    document.getElementById('bar2').style.width=Math.round(750/850*100)+'%';
+    document.getElementById('bar3').style.width=Math.round(500/850*100)+'%';
+  },300);
 },2200);
 
-function anim(id,target){
-  let v=0;const el=document.getElementById(id);
-  const iv=setInterval(()=>{v=Math.min(v+Math.ceil(target/60),target);el.textContent=v.toLocaleString('id-ID');if(v>=target)clearInterval(iv);},30);
+function anim(id,target,delay){
+  setTimeout(()=>{
+    let v=0;const el=document.getElementById(id);
+    el.style.opacity='1';el.style.transform='scale(1)';
+    const iv=setInterval(()=>{
+      v=Math.min(v+Math.ceil(target/55),target);
+      el.textContent=v.toLocaleString('id-ID');
+      if(v>=target)clearInterval(iv);
+    },28);
+  },delay);
 }
 
 function goTab(id,tab){
@@ -479,8 +689,7 @@ function uq(btn,delta){
   const ctrl=btn.parentElement;
   const item=ctrl.closest('.menu-item');
   const numEl=ctrl.querySelector('.qn');
-  const name=item.dataset.name;
-  const price=parseInt(item.dataset.price);
+  const name=item.dataset.name,price=parseInt(item.dataset.price);
   let qty=parseInt(numEl.textContent)+delta;
   if(qty<0)qty=0;
   numEl.textContent=qty;
@@ -496,9 +705,8 @@ function addFromRank(name,price){
   for(const item of items){
     if(item.dataset.name===name){
       item.querySelector('.qb.plus').click();
-      item.style.transition='border-color 0.1s';
-      item.style.borderColor='rgba(212,162,76,0.8)';
-      setTimeout(()=>item.style.borderColor='',700);
+      item.style.borderColor='rgba(201,150,42,0.8)';
+      setTimeout(()=>item.style.borderColor='',800);
       document.getElementById('content').scrollTo({top:item.offsetTop-60,behavior:'smooth'});
       break;
     }
@@ -515,7 +723,7 @@ function updateBar(){
   document.getElementById('p2Total').textContent='Rp '+total.toLocaleString('id-ID');
   const el=document.getElementById('p1Items');
   if(!Object.keys(cart).length){
-    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:12px;padding:24px 0">Belum ada pesanan</div>';
+    el.innerHTML='<div style="text-align:center;color:var(--muted);font-size:12px;padding:24px 0;font-weight:500;">Belum ada pesanan</div>';
   }else{
     el.innerHTML=Object.entries(cart).map(([n,{qty,price}])=>`<div class="oi"><div><div class="oi-name">${n}</div><div class="oi-detail">Rp ${price.toLocaleString('id-ID')} × ${qty}</div></div><div class="oi-amt">Rp ${(qty*price).toLocaleString('id-ID')}</div></div>`).join('');
   }
@@ -525,8 +733,7 @@ function openPanel(id){updateBar();document.getElementById(id).classList.add('op
 function closePanel(id){document.getElementById(id).classList.remove('open');}
 
 function sendWA(){
-  const items=Object.entries(cart);
-  if(!items.length)return;
+  const items=Object.entries(cart);if(!items.length)return;
   const total=items.reduce((s,[,{qty,price}])=>s+qty*price,0);
   const lines=items.map(([n,{qty,price}])=>`- ${n} x${qty} = Rp ${(qty*price).toLocaleString('id-ID')}`).join('%0A');
   const msg=`Halo Kopi Omwari! 👋%0A%0ASaya sudah transfer dan mau kirim bukti pembayaran.%0A%0A*Detail Pesanan:*%0A${lines}%0A%0A*Total: Rp ${total.toLocaleString('id-ID')}*%0A%0A_(Foto bukti transfer saya lampirkan)_%0A%0ATerima kasih! ☕`;
