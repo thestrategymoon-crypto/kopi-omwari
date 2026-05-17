@@ -486,8 +486,8 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
             <div class="lb-rank">#2</div>
             <div class="lb-medal">🥈</div>
             <div class="lb-info">
-              <div class="lb-name">Kopi Istimewa</div>
-              <div class="lb-sub">Kreasi Barista · Eksklusif · Tap untuk Order</div>
+              <div class="lb-name">Kopi Warisan</div>
+              <div class="lb-sub">Racikan Turun-Temurun · Signature · Tap untuk Order</div>
             </div>
             <div class="lb-right">
               <div class="lb-count" id="cnt2" style="animation-delay:1.6s">0</div>
@@ -501,8 +501,8 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
             <div class="lb-rank">#3</div>
             <div class="lb-medal">🥉</div>
             <div class="lb-info">
-              <div class="lb-name">Kopi Warisan</div>
-              <div class="lb-sub">Racikan Turun-Temurun · Signature · Tap untuk Order</div>
+              <div class="lb-name">Kopi Istimewa</div>
+              <div class="lb-sub">Kreasi Barista · Eksklusif · Tap untuk Order</div>
             </div>
             <div class="lb-right">
               <div class="lb-count" id="cnt3" style="animation-delay:1.8s">0</div>
@@ -513,9 +513,9 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
         </div>
 
         <div class="stats-row">
-          <div class="stat-box"><span class="sv" style="color:var(--gold2)">1.580</span><span class="sl">Total Cup</span></div>
+          <div class="stat-box"><span class="sv" style="color:var(--gold2)">1.935</span><span class="sl">Total Cup</span></div>
           <div class="stat-box"><span class="sv" style="color:var(--green)">7 Hari</span><span class="sl">Periode</span></div>
-          <div class="stat-box"><span class="sv" style="color:var(--red)">🔥 Hot</span><span class="sl">Status</span></div>
+          <div class="stat-box"><span class="sv" style="color:var(--gold2)">170</span><span class="sl">Botol Terjual</span></div>
         </div>
       </div>
 
@@ -656,13 +656,13 @@ setTimeout(()=>{
   document.getElementById('splash').classList.add('hide');
   setTimeout(()=>document.getElementById('splash').style.display='none',1000);
   // Animate counters: #1 Istimewa=850, #2 Arenila=750, #3 Warisan=500
-  anim('cnt1',730,1400);
-  anim('cnt2',400,1600);
+  anim('cnt1',660,1400);
+  anim('cnt2',655,1600);
   anim('cnt3',450,1800);
   setTimeout(()=>{
     document.getElementById('bar1').style.width='100%';
-    document.getElementById('bar2').style.width=Math.round(400/730*100)+'%';
-    document.getElementById('bar3').style.width=Math.round(450/730*100)+'%';
+    document.getElementById('bar2').style.width=Math.round(655/660*100)+'%';
+    document.getElementById('bar3').style.width=Math.round(450/660*100)+'%';
   },300);
 },2200);
 
