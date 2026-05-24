@@ -376,6 +376,191 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
 .btn-wa{width:100%;background:var(--wa);border:none;border-radius:12px;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
 .btn-wa svg{width:18px;height:18px;fill:white;flex-shrink:0;}
 .btn-ghost{width:100%;background:transparent;border:1px solid var(--border);border-radius:12px;padding:12px;font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:1px;transition:all 0.2s;margin-top:8px;font-weight:500;}
+
+/* ══ LIGHT MODE ══ */
+body.light {
+  --black:#F5F5F0;--dark:#EBEBЕ6;--card:#FFFFFF;--card2:#F0F0EB;
+  --border:rgba(0,0,0,0.08);--white:#1A1A1A;--muted:rgba(0,0,0,0.4);
+  --muted2:rgba(0,0,0,0.6);--gold:#B8840A;--gold2:#C9960E;
+  --gold-light:rgba(184,132,10,0.1);
+}
+body.light .topbar{background:rgba(245,245,240,0.97);}
+body.light .ticker{background:#EBEBЕ6;}
+body.light .cat-tabs{background:#F0F0EB;}
+body.light #content{background:#F5F5F0;}
+body.light .live-hero{background:linear-gradient(180deg,rgba(184,132,10,0.06) 0%,transparent 100%);}
+body.light .lb-card.gold{background:linear-gradient(135deg,#FFF8E6,#FFF3D6);}
+body.light .lb-card.silver{background:linear-gradient(135deg,#F0FAF4,#E8F7EF);}
+body.light .lb-card.bronze{background:#FFFFFF;}
+body.light .stat-box{background:#FFFFFF;}
+body.light .section-tagline{background:linear-gradient(135deg,#FFFFFF,#F8F8F3);}
+body.light .menu-item{background:#FFFFFF;}
+body.light .menu-item.feat{background:linear-gradient(135deg,#FFFBF0,#FFF8E8);}
+body.light .order-bar{background:rgba(245,245,240,0.97);}
+body.light .fs-panel{background:#F5F5F0;}
+body.light .fs-header{background:rgba(245,245,240,0.98);}
+body.light .fs-footer{background:rgba(245,245,240,0.98);}
+body.light .oi{background:#FFFFFF;}
+body.light .pay-opt{background:#FFFFFF;}
+body.light .pay-opt.sel{background:linear-gradient(135deg,#FFF8E6,#FFF3D6);}
+body.light .cs{background:#FFFFFF;}
+body.light .pay-total-box{background:#FFFFFF;}
+body.light .qb.minus{background:#F0F0EB;}
+body.light .qn{background:rgba(0,0,0,0.04);}
+body.light #splash{background:#F5F5F0;}
+body.light .s-kopi{color:rgba(26,26,26,0.85);}
+body.light .ring{stroke:rgba(26,26,26,0.8);}
+body.light .ring6{fill:#1A1A1A;}
+
+/* THEME TOGGLE */
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; transition: all 0.2s;
+  margin-right: 6px; flex-shrink: 0;
+}
+.theme-toggle:active { transform: scale(0.9); }
+
+/* ══ RECOMMENDATION TOAST ══ */
+.rec-toast {
+  position: fixed; bottom: 90px; left: 16px; right: 16px; z-index: 150;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 12px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  transform: translateY(20px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.rec-toast.show { transform: translateY(0); opacity: 1; pointer-events: all; }
+.rec-toast-icon { font-size: 20px; flex-shrink: 0; }
+.rec-toast-text { flex: 1; }
+.rec-toast-label { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 2px; }
+.rec-toast-name { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: var(--white); }
+.rec-toast-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.rec-add-btn {
+  background: var(--gold); border: none; border-radius: 8px;
+  padding: 7px 12px; font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 800; color: #060608;
+  cursor: pointer; flex-shrink: 0; letter-spacing: 0.5px;
+  transition: all 0.15s;
+}
+.rec-add-btn:active { transform: scale(0.95); }
+.rec-close { font-size: 16px; color: var(--muted); cursor: pointer; padding: 4px; flex-shrink: 0; }
+
+/* ══ LOYALTY BADGE PANEL ══ */
+.badge-panel {
+  position: fixed; inset: 0; z-index: 400;
+  background: rgba(6,6,8,0.92); backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px; opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.badge-panel.open { opacity: 1; pointer-events: all; }
+.badge-card {
+  background: linear-gradient(135deg, #1A1500, #241E00);
+  border: 1.5px solid rgba(201,150,42,0.5);
+  border-radius: 20px; padding: 32px 28px;
+  text-align: center; width: 100%; max-width: 320px;
+  position: relative; overflow: hidden;
+  animation: badgeIn 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.badge-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+@keyframes badgeIn {
+  from { transform: scale(0.8) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+.badge-logo-ring {
+  width: 80px; height: 80px; margin: 0 auto 16px;
+}
+.badge-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.badge-name { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 4px; }
+.badge-name span { color: var(--gold2); }
+.badge-sub { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.badge-divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 16px; }
+.badge-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; margin-bottom: 20px; }
+.badge-stamp {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(201,150,42,0.12); border: 1px solid rgba(201,150,42,0.3);
+  border-radius: 100px; padding: 5px 14px;
+  font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: 'Syne', sans-serif; font-weight: 700;
+}
+.badge-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; width: 100%; max-width: 320px; }
+.badge-share-btn {
+  width: 100%; background: var(--wa); border: none; border-radius: 12px;
+  padding: 14px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+  color: white; letter-spacing: 1px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.badge-share-btn svg { width: 18px; height: 18px; fill: white; }
+.badge-close-btn {
+  width: 100%; background: transparent; border: 1px solid var(--border);
+  border-radius: 12px; padding: 11px; font-size: 11px;
+  color: var(--muted); cursor: pointer; font-family: 'Inter', sans-serif;
+}
+
+/* ══ GROUP ORDER PANEL ══ */
+.group-btn {
+  position: fixed; bottom: 90px; right: 16px; z-index: 99;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--card2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.group-btn.hidden { display: none; }
+.group-btn:active { transform: scale(0.92); }
+
+.group-panel { position: fixed; inset: 0; z-index: 300; background: var(--black); transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow: hidden; }
+.group-panel.open { transform: translateX(0); }
+
+.member-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px; margin-bottom: 8px;
+}
+.member-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.member-name-inp {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 12px;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  color: var(--white); width: 60%; outline: none; letter-spacing: 0.5px;
+}
+body.light .member-name-inp { color: #1A1A1A; }
+.member-name-inp::placeholder { color: var(--muted); font-weight: 400; }
+.remove-member { font-size: 18px; color: var(--muted); cursor: pointer; padding: 4px; }
+.member-items { display: flex; flex-direction: column; gap: 6px; }
+.member-item-row {
+  display: flex; align-items: center; gap:8px;
+}
+.member-item-sel {
+  flex: 1; background: var(--card2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px;
+  font-size: 11px; color: var(--white); outline: none;
+  font-family: 'Inter', sans-serif; -webkit-appearance: none;
+}
+body.light .member-item-sel { color: #1A1A1A; background: #F0F0EB; }
+.member-item-qty {
+  width: 50px; background: var(--card2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px; text-align: center;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  color: var(--white); outline: none;
+}
+body.light .member-item-qty { color: #1A1A1A; background: #F0F0EB; }
+.remove-item { font-size: 16px; color: var(--muted); cursor: pointer; padding: 4px; flex-shrink: 0; }
+.add-item-row {
+  display: flex; align-items: center; gap: 6px; margin-top: 8px; cursor: pointer;
+  font-size: 11px; color: var(--gold); font-weight: 600;
+}
+.group-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0; border-top: 1px solid var(--border); margin-top: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -419,6 +604,7 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
         <div class="topbar-loc">Cot Gapu &nbsp;·&nbsp; Bireuen</div>
       </div>
     </div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ganti Tema">🌙</button>
     <div class="live-pill">
       <div class="live-dot"></div>
       <div class="live-txt">LIVE</div>
@@ -428,13 +614,13 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-inner">
-      <div class="ti"><div class="ti-dot"></div>KOPI AREN OW <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI WARISAN <span class="ti-hi">#1 THIS WEEK</span></div>
       <div class="ti"><div class="ti-dot"></div>SEN – SAB <span class="ti-hi">09:00 – 00:00</span></div>
       <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
       <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
       <div class="ti"><div class="ti-dot"></div>KOPI BOTOL <span class="ti-hi">27K – 95K</span></div>
       <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
-      <div class="ti"><div class="ti-dot"></div>KOPI AREN OW <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI WARISAN <span class="ti-hi">#1 THIS WEEK</span></div>
       <div class="ti"><div class="ti-dot"></div>SEN – SAB <span class="ti-hi">09:00 – 00:00</span></div>
       <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
       <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
@@ -471,7 +657,7 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
             <div class="lb-rank">#1</div>
             <div class="lb-medal">🥇</div>
             <div class="lb-info">
-              <div class="lb-name">Kopi Aren OW</div>
+              <div class="lb-name">Kopi Warisan</div>
               <div class="lb-sub">Kopi Aren Original · Andalan Omwari · Tap untuk Order</div>
             </div>
             <div class="lb-right">
@@ -486,8 +672,8 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
             <div class="lb-rank">#2</div>
             <div class="lb-medal">🥈</div>
             <div class="lb-info">
-              <div class="lb-name">Kopi Warisan</div>
-              <div class="lb-sub">Racikan Turun-Temurun · Signature · Tap untuk Order</div>
+              <div class="lb-name">Kopi Aren OW</div>
+              <div class="lb-sub">Kopi Aren Original · Andalan Omwari · Tap untuk Order</div>
             </div>
             <div class="lb-right">
               <div class="lb-count" id="cnt2" style="animation-delay:1.6s">0</div>
@@ -501,8 +687,8 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
             <div class="lb-rank">#3</div>
             <div class="lb-medal">🥉</div>
             <div class="lb-info">
-              <div class="lb-name">Kopi Istimewa</div>
-              <div class="lb-sub">Kreasi Barista · Eksklusif · Tap untuk Order</div>
+              <div class="lb-name">Kopi Arenila</div>
+              <div class="lb-sub">Gula Aren Spesial · Fan Favourite · Tap untuk Order</div>
             </div>
             <div class="lb-right">
               <div class="lb-count" id="cnt3" style="animation-delay:1.8s">0</div>
@@ -513,7 +699,7 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
         </div>
 
         <div class="stats-row">
-          <div class="stat-box"><span class="sv" style="color:var(--gold2)">1.935</span><span class="sl">Total Cup</span></div>
+          <div class="stat-box"><span class="sv" style="color:var(--gold2)">1.723</span><span class="sl">Total Cup</span></div>
           <div class="stat-box"><span class="sv" style="color:var(--green)">7 Hari</span><span class="sl">Periode</span></div>
           <div class="stat-box"><span class="sv" style="color:var(--gold2)">170</span><span class="sl">Botol Terjual</span></div>
         </div>
@@ -609,6 +795,78 @@ html,body{height:100%;overflow:hidden;background:var(--black);color:var(--white)
   </div>
 </div>
 
+
+<!-- RECOMMENDATION TOAST -->
+<div class="rec-toast" id="recToast">
+  <div class="rec-toast-icon" id="recIcon">☕</div>
+  <div class="rec-toast-text">
+    <div class="rec-toast-label">✨ Rekomendasi untuk kamu</div>
+    <div class="rec-toast-name" id="recName">Kopi Arenila</div>
+    <div class="rec-toast-sub" id="recSub">Pelanggan yang suka ini juga suka itu</div>
+  </div>
+  <button class="rec-add-btn" id="recAddBtn" onclick="addRec()">+ Tambah</button>
+  <span class="rec-close" onclick="closeRec()">✕</span>
+</div>
+
+
+<!-- GROUP ORDER BUTTON -->
+<button class="group-btn hidden" id="groupBtn" onclick="openPanel('groupPanel')" title="Pesan Grup">👥</button>
+
+<!-- GROUP ORDER PANEL -->
+<div class="fs-panel group-panel" id="groupPanel">
+  <div class="fs-header">
+    <div class="back-btn" onclick="closePanel('groupPanel')">←</div>
+    <div class="fs-title">👥 Pesan Grup</div>
+  </div>
+  <div class="fs-body" id="groupBody">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:16px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Cara Pakai</div>
+      <div style="font-size:11px;color:var(--muted2);line-height:1.6;">Tambah anggota → Isi nama → Pilih menu masing-masing → Kirim ke WA sekaligus</div>
+    </div>
+    <div id="membersList"></div>
+    <button onclick="addMember()" style="width:100%;background:transparent;border:2px dashed rgba(201,150,42,0.3);border-radius:12px;padding:13px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--gold);cursor:pointer;letter-spacing:1px;">+ Tambah Anggota</button>
+  </div>
+  <div class="fs-footer">
+    <div class="group-total-row">
+      <span style="font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;">Total Grup</span>
+      <span style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold2);" id="groupTotal">Rp 0</span>
+    </div>
+    <button class="btn-wa" onclick="sendGroupWA()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      KIRIM ORDER GRUP VIA WHATSAPP
+    </button>
+    <button class="btn-ghost" onclick="closePanel('groupPanel')">← Kembali</button>
+  </div>
+</div>
+
+
+<!-- LOYALTY BADGE -->
+<div class="badge-panel" id="badgePanel">
+  <div class="badge-card">
+    <svg class="badge-logo-ring" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="93" fill="none" stroke="rgba(201,150,42,0.6)" stroke-width="6"/>
+      <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(201,150,42,0.7)" stroke-width="5.5"/>
+      <circle cx="100" cy="100" r="57" fill="none" stroke="rgba(201,150,42,0.8)" stroke-width="5"/>
+      <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(240,192,96,0.9)" stroke-width="4.5"/>
+      <circle cx="100" cy="100" r="24" fill="none" stroke="var(--gold2)" stroke-width="4"/>
+      <circle cx="100" cy="100" r="8" fill="var(--gold2)"/>
+    </svg>
+    <div class="badge-title">✦ Pelanggan Setia</div>
+    <div class="badge-name">KOPI <span>OMWARI</span></div>
+    <div class="badge-sub">Cot Gapu · Bireuen · Aceh</div>
+    <div class="badge-divider"></div>
+    <div class="badge-desc" id="badgeDesc">Terima kasih telah mempercayai<br>cita rasa kopi terbaik kami.<br>Pesanan kamu sudah diterima! ☕</div>
+    <div class="badge-stamp">🏅 &nbsp;ORDER CONFIRMED &nbsp;·&nbsp; <span id="badgeOrder">Rp 0</span></div>
+  </div>
+  <div class="badge-actions">
+    <button class="badge-share-btn" onclick="shareBadgeWA()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Bagikan ke WhatsApp
+    </button>
+    <button class="badge-close-btn" onclick="document.getElementById('badgePanel').classList.remove('open')">Kembali ke Menu</button>
+  </div>
+</div>
+
 <!-- PANEL 1 -->
 <div class="fs-panel" id="p1">
   <div class="fs-header"><div class="back-btn" onclick="closePanel('p1')">←</div><div class="fs-title">🛒 Ringkasan Pesanan</div></div>
@@ -656,13 +914,13 @@ setTimeout(()=>{
   document.getElementById('splash').classList.add('hide');
   setTimeout(()=>document.getElementById('splash').style.display='none',1000);
   // Animate counters: #1 Istimewa=850, #2 Arenila=750, #3 Warisan=500
-  anim('cnt1',660,1400);
-  anim('cnt2',655,1600);
-  anim('cnt3',450,1800);
+  anim('cnt1',750,1400);
+  anim('cnt2',433,1600);
+  anim('cnt3',370,1800);
   setTimeout(()=>{
     document.getElementById('bar1').style.width='100%';
-    document.getElementById('bar2').style.width=Math.round(655/660*100)+'%';
-    document.getElementById('bar3').style.width=Math.round(450/660*100)+'%';
+    document.getElementById('bar2').style.width=Math.round(433/750*100)+'%';
+    document.getElementById('bar3').style.width=Math.round(370/750*100)+'%';
   },300);
 },2200);
 
@@ -740,6 +998,240 @@ function sendWA(){
   window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
 }
 updateBar();
+
+// ── MENU DATA for recommendations & group order ──
+const MENU_ALL = [
+  {name:'Kopi Warisan',price:22000,cat:'elit',icon:'☕'},
+  {name:'Kopi Arenila',price:22000,cat:'elit',icon:'🌿'},
+  {name:'Kopi Aren OW',price:22000,cat:'elit',icon:'🍯'},
+  {name:'Kopi Istimewa',price:22000,cat:'elit',icon:'✨'},
+  {name:'Kopi Butterscot',price:22000,cat:'elit',icon:'🍯'},
+  {name:'Kopi Pandan',price:22000,cat:'elit',icon:'🍃'},
+  {name:'Kopi Tetangga',price:22000,cat:'elit',icon:'🏡'},
+  {name:'Cappuccino',price:22000,cat:'elit',icon:'☕'},
+  {name:'Kopi Latte',price:22000,cat:'elit',icon:'🥛'},
+  {name:'Kopi Hazelnut',price:20000,cat:'medium',icon:'🌰'},
+  {name:'Kopi Semangka',price:20000,cat:'medium',icon:'🍉'},
+  {name:'Kopi Caramel',price:20000,cat:'medium',icon:'🍮'},
+  {name:'Kopi Avocado',price:20000,cat:'medium',icon:'🥑'},
+  {name:'Kopi Coklat',price:20000,cat:'medium',icon:'🍫'},
+  {name:'Kopi Lemon',price:20000,cat:'medium',icon:'🍋'},
+  {name:'Coklat Hazelnut',price:18000,cat:'medium',icon:'🍫'},
+  {name:'Matcha',price:15000,cat:'easy',icon:'🍵'},
+  {name:'Strawberry',price:15000,cat:'easy',icon:'🍓'},
+  {name:'Blueberry',price:15000,cat:'easy',icon:'🫐'},
+  {name:'Taro',price:15000,cat:'easy',icon:'🟣'},
+  {name:'Milo Original',price:15000,cat:'easy',icon:'🥤'},
+  {name:'Leci Tea',price:15000,cat:'easy',icon:'🍵'},
+  {name:'Espresso',price:11000,cat:'mayoritas',icon:'⚡'},
+  {name:'Sanger Panas',price:13000,cat:'mayoritas',icon:'🔥'},
+  {name:'Sanger Dingin',price:16000,cat:'mayoritas',icon:'❄️'},
+  {name:'Americano',price:11000,cat:'mayoritas',icon:'☕'},
+  {name:'Americano Dingin',price:16000,cat:'mayoritas',icon:'🧊'},
+  {name:'Lemon Madu',price:15000,cat:'mayoritas',icon:'🍯'},
+  {name:'Lemon Tea',price:10000,cat:'mayoritas',icon:'🍋'},
+  {name:'Arummanis',price:13000,cat:'mayoritas',icon:'🍬'},
+  {name:'Greentea',price:10000,cat:'mayoritas',icon:'🍵'},
+  {name:'Kopi Botol 250ml',price:27000,cat:'botol',icon:'🍶'},
+  {name:'Kopi Botol 500ml',price:50000,cat:'botol',icon:'🍶'},
+  {name:'Kopi Botol 1000ml',price:95000,cat:'botol',icon:'🍶'},
+];
+
+const RECS = {
+  'Kopi Warisan': {rec:'Kopi Arenila', reason:'Sama-sama favorit pelanggan setia'},
+  'Kopi Arenila': {rec:'Kopi Aren OW', reason:'Sesama kopi aren, rasa berbeda'},
+  'Kopi Aren OW': {rec:'Kopi Warisan', reason:'Pasangan sempurna untuk dinikmati bersama'},
+  'Kopi Istimewa': {rec:'Cappuccino', reason:'Sama-sama kreasi barista pilihan'},
+  'Kopi Butterscot': {rec:'Kopi Caramel', reason:'Pecinta rasa manis pasti suka ini'},
+  'Kopi Pandan': {rec:'Matcha', reason:'Sama-sama herbal & menyegarkan'},
+  'Cappuccino': {rec:'Kopi Latte', reason:'Beda tekstur, sama enaknya'},
+  'Kopi Latte': {rec:'Cappuccino', reason:'Classic duo yang selalu pas'},
+  'Kopi Hazelnut': {rec:'Coklat Hazelnut', reason:'Hazelnut lovers wajib coba ini'},
+  'Kopi Coklat': {rec:'Coklat Hazelnut', reason:'Upgrade coklat kamu hari ini'},
+  'Matcha': {rec:'Leci Tea', reason:'Minuman ringan favorit anak muda'},
+  'Espresso': {rec:'Americano', reason:'Pure coffee vibes yang kuat'},
+  'Sanger Panas': {rec:'Sanger Dingin', reason:'Coba versi dinginnya juga!'},
+};
+
+let recTimeout = null;
+let lastAdded = null;
+
+// ── RECOMMENDATIONS ──
+function showRec(addedName) {
+  const r = RECS[addedName];
+  if (!r) return;
+  const recItem = MENU_ALL.find(m => m.name === r.rec);
+  if (!recItem) return;
+  document.getElementById('recName').textContent = recItem.icon + ' ' + recItem.name;
+  document.getElementById('recSub').textContent = r.reason + ' · ' + 'Rp ' + recItem.price.toLocaleString('id-ID');
+  document.getElementById('recIcon').textContent = '✨';
+  lastAdded = recItem;
+  document.getElementById('recToast').classList.add('show');
+  clearTimeout(recTimeout);
+  recTimeout = setTimeout(closeRec, 5000);
+}
+function closeRec() {
+  document.getElementById('recToast').classList.remove('show');
+  lastAdded = null;
+}
+function addRec() {
+  if (!lastAdded) return;
+  const items = document.querySelectorAll('.menu-item');
+  for (const item of items) {
+    if (item.dataset.name === lastAdded.name) {
+      item.querySelector('.qb.plus').click();
+      closeRec();
+      item.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+  }
+  // If not found in DOM, add directly to cart
+  cart[lastAdded.name] = {qty: (cart[lastAdded.name]?.qty || 0) + 1, price: lastAdded.price};
+  updateBar();
+  closeRec();
+}
+
+// Override uq to add recommendation
+const _uq_orig = uq;
+function uq(btn, delta) {
+  const item = btn.parentElement.closest('.menu-item');
+  const name = item?.dataset?.name;
+  _uq_orig(btn, delta);
+  if (delta > 0 && name) setTimeout(() => showRec(name), 800);
+}
+
+// ── THEME TOGGLE ──
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('kopiTheme', isLight ? 'light' : 'dark');
+}
+// Restore theme
+const savedTheme = localStorage.getItem('kopiTheme');
+if (savedTheme === 'light') {
+  document.body.classList.add('light');
+  document.getElementById('themeToggle').textContent = '☀️';
+}
+
+// ── LOYALTY BADGE ──
+function showBadge() {
+  const total = Object.values(cart).reduce((s,i)=>s+i.qty*i.price,0);
+  document.getElementById('badgeOrder').textContent = 'Rp ' + total.toLocaleString('id-ID');
+  document.getElementById('badgePanel').classList.add('open');
+}
+function shareBadgeWA() {
+  const total = Object.values(cart).reduce((s,i)=>s+i.qty*i.price,0);
+  const msg = `☕ *Saya baru order di Kopi Omwari!*%0A%0A🏅 Pelanggan Setia Kopi Omwari%0ACot Gapu · Bireuen · Aceh%0A%0ATotal: Rp ${total.toLocaleString('id-ID')}%0A%0ACoba juga kopi terbaik di Bireuen! 👇%0Athestrategymoon-crypto.github.io/kopi-omwari`;
+  window.open('https://wa.me/?text=' + msg, '_blank');
+}
+
+// Show badge after sending WA
+const _sendWA_orig = sendWA;
+function sendWA() {
+  _sendWA_orig();
+  setTimeout(showBadge, 1000);
+}
+
+// Show group button when cart has items
+const _updateBar_orig = updateBar;
+function updateBar() {
+  _updateBar_orig();
+  const count = Object.values(cart).reduce((s,i)=>s+i.qty,0);
+  const gb = document.getElementById('groupBtn');
+  if (gb) gb.classList.toggle('hidden', count === 0);
+}
+
+// ── GROUP ORDER ──
+let members = [];
+let memberIdCounter = 0;
+
+function addMember() {
+  const id = ++memberIdCounter;
+  members.push({id, name:'', items:[{menu:'Kopi Warisan', qty:1}]});
+  renderMembers();
+}
+
+function removeMember(id) {
+  members = members.filter(m => m.id !== id);
+  renderMembers();
+}
+
+function addMemberItem(id) {
+  const m = members.find(m => m.id === id);
+  if (m) { m.items.push({menu:'Kopi Warisan', qty:1}); renderMembers(); }
+}
+
+function removeMemberItem(id, idx) {
+  const m = members.find(m => m.id === id);
+  if (m && m.items.length > 1) { m.items.splice(idx, 1); renderMembers(); }
+}
+
+function renderMembers() {
+  const el = document.getElementById('membersList');
+  if (!el) return;
+  if (!members.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--muted);font-size:12px;padding:20px 0;">Belum ada anggota. Tap + untuk tambah.</div>';
+    document.getElementById('groupTotal').textContent = 'Rp 0';
+    return;
+  }
+  const menuOpts = MENU_ALL.map(m => `<option value="${m.name}" data-price="${m.price}">${m.icon} ${m.name} - ${(m.price/1000).toFixed(0)}K</option>`).join('');
+  let totalGrup = 0;
+  el.innerHTML = members.map((m, mi) => {
+    let memberTotal = 0;
+    const itemRows = m.items.map((item, ii) => {
+      const menuItem = MENU_ALL.find(x => x.name === item.menu) || MENU_ALL[0];
+      memberTotal += menuItem.price * item.qty;
+      return `<div class="member-item-row">
+        <select class="member-item-sel" onchange="updateMemberItem(${m.id},${ii},'menu',this.value)">${MENU_ALL.map(x=>`<option value="${x.name}" ${x.name===item.menu?'selected':''}>${x.icon} ${x.name} - ${(x.price/1000).toFixed(0)}K</option>`).join('')}</select>
+        <input type="number" class="member-item-qty" min="1" max="99" value="${item.qty}" onchange="updateMemberItem(${m.id},${ii},'qty',this.value)" style="width:44px;">
+        <span class="remove-item" onclick="removeMemberItem(${m.id},${ii})">✕</span>
+      </div>`;
+    }).join('');
+    totalGrup += memberTotal;
+    return `<div class="member-card">
+      <div class="member-header">
+        <input class="member-name-inp" type="text" placeholder="Nama anggota ${mi+1}" value="${m.name}" oninput="updateMemberName(${m.id},this.value)">
+        <span style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--gold);">Rp ${memberTotal.toLocaleString('id-ID')}</span>
+        <span class="remove-member" onclick="removeMember(${m.id})">🗑</span>
+      </div>
+      <div class="member-items">${itemRows}</div>
+      <div class="add-item-row" onclick="addMemberItem(${m.id})">＋ Tambah menu</div>
+    </div>`;
+  }).join('');
+  document.getElementById('groupTotal').textContent = 'Rp ' + totalGrup.toLocaleString('id-ID');
+}
+
+function updateMemberName(id, val) {
+  const m = members.find(m => m.id === id); if (m) m.name = val;
+}
+function updateMemberItem(id, idx, field, val) {
+  const m = members.find(m => m.id === id);
+  if (!m) return;
+  if (field === 'menu') m.items[idx].menu = val;
+  if (field === 'qty') m.items[idx].qty = Math.max(1, parseInt(val)||1);
+  renderMembers();
+}
+
+function sendGroupWA() {
+  if (!members.length) return;
+  let total = 0;
+  let lines = members.map(m => {
+    const name = m.name || 'Anggota';
+    const itemLines = m.items.map(item => {
+      const menuItem = MENU_ALL.find(x => x.name === item.menu) || MENU_ALL[0];
+      const sub = menuItem.price * item.qty;
+      total += sub;
+      return `   - ${item.menu} x${item.qty} = Rp ${sub.toLocaleString('id-ID')}`;
+    }).join('%0A');
+    return `👤 *${name}*%0A${itemLines}`;
+  }).join('%0A%0A');
+  const msg = `Halo Kopi Omwari! 👋%0A%0ASaya mau order *GRUP*:%0A%0A${lines}%0A%0A*Total Semua: Rp ${total.toLocaleString('id-ID')}*%0A%0ATerima kasih! ☕`;
+  window.open('https://wa.me/6282315339915?text=' + msg, '_blank');
+}
+
+// Init group members list
+renderMembers();
+
 </script>
 </body>
 </html>
