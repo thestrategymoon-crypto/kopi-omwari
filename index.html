@@ -20,8 +20,8 @@ body.lm .minp,.body.lm .msel,.body.lm .mqt{background:#EEEEE9;color:#1A1A1A}
 body.lm .badgec{background:linear-gradient(135deg,#FFF6E0,#FFEEBB)}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--wh);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 #spl{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:splBye .7s ease 2.3s forwards;cursor:pointer}
-#spl.go{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
-@keyframes splBye{to{opacity:0;visibility:hidden}}
+#spl.go{display:none!important}
+@keyframes splBye{to{opacity:0;visibility:hidden;pointer-events:none}}
 .rg{fill:none;stroke:#fff;stroke-linecap:round;stroke-dasharray:2000;stroke-dashoffset:2000;animation:dr .85s cubic-bezier(.4,0,.2,1) forwards}
 .rg1{stroke-width:7;animation-delay:0s}.rg2{stroke-width:6.5;animation-delay:.18s}.rg3{stroke-width:6;animation-delay:.36s}
 .rg4{stroke-width:5.5;animation-delay:.54s}.rg5{stroke-width:5;animation-delay:.72s}.rg6{animation-delay:.9s}
@@ -197,7 +197,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--wh);font-
 </style>
 </head>
 <body>
-<div id="spl" onclick="this.classList.add('go')"><div style="margin-bottom:28px"><svg viewBox="0 0 200 200" width="180" height="180"><circle class="rg rg1" cx="100" cy="100" r="93" fill="none"/><circle class="rg rg2" cx="100" cy="100" r="75" fill="none"/><circle class="rg rg3" cx="100" cy="100" r="57" fill="none"/><circle class="rg rg4" cx="100" cy="100" r="40" fill="none"/><circle class="rg rg5" cx="100" cy="100" r="24" fill="none"/><circle class="rg rg6" cx="100" cy="100" r="8" stroke="none" fill="white"/></svg></div><div style="text-align:center"><div class="srow"><span class="sr">KOPI&nbsp;</span><span class="so">OMWARI</span></div><div class="sdiv"></div><div class="sloc">COT GAPU &middot; BIREUEN &middot; ACEH</div><div class="stap">Tap untuk membuka</div></div></div>
+<div id="spl" onclick="this.style.cssText='display:none'"><div style="margin-bottom:28px"><svg viewBox="0 0 200 200" width="180" height="180"><circle class="rg rg1" cx="100" cy="100" r="93" fill="none"/><circle class="rg rg2" cx="100" cy="100" r="75" fill="none"/><circle class="rg rg3" cx="100" cy="100" r="57" fill="none"/><circle class="rg rg4" cx="100" cy="100" r="40" fill="none"/><circle class="rg rg5" cx="100" cy="100" r="24" fill="none"/><circle class="rg rg6" cx="100" cy="100" r="8" stroke="none" fill="white"/></svg></div><div style="text-align:center"><div class="srow"><span class="sr">KOPI&nbsp;</span><span class="so">OMWARI</span></div><div class="sdiv"></div><div class="sloc">COT GAPU &middot; BIREUEN &middot; ACEH</div><div class="stap">Tap untuk membuka</div></div></div>
 <div id="app">
 <div class="topbar"><div class="tl"><svg viewBox="0 0 200 200" width="30" height="30" style="flex-shrink:0"><circle cx="100" cy="100" r="93" fill="none" stroke="#fff" stroke-width="7"/><circle cx="100" cy="100" r="75" fill="none" stroke="#fff" stroke-width="6.5"/><circle cx="100" cy="100" r="57" fill="none" stroke="#fff" stroke-width="6"/><circle cx="100" cy="100" r="40" fill="none" stroke="#fff" stroke-width="5.5"/><circle cx="100" cy="100" r="24" fill="none" stroke="#fff" stroke-width="5"/><circle cx="100" cy="100" r="8" fill="#fff"/></svg><div class="tt"><div class="tb">KOPI <span>OMWARI</span></div><div class="tlo">Cot Gapu &middot; Bireuen</div></div></div><div class="tr"><button class="thbtn" id="thbtn" onclick="toggleTheme()">&#127769;</button><div class="lp"><div class="ld"></div><div class="lt">LIVE</div></div></div></div>
 <div class="ticker"><div class="tiw"><div class="ti"><div class="tid"></div>KOPI WARISAN <span class="tih">#1 THIS WEEK</span></div><div class="ti"><div class="tid"></div>SEN &ndash; SAB <span class="tih">09:00 &ndash; 00:00</span></div><div class="ti"><div class="tid"></div>KOPI DARI BIREUEN <span class="tih">TERBAIK</span></div><div class="ti"><div class="tid"></div>ORDER WA <span class="tih">0823 1533 9915</span></div><div class="ti"><div class="tid"></div>KOPI BOTOL <span class="tih">27K &ndash; 95K</span></div><div class="ti"><div class="tid"></div>30+ VARIAN <span class="tih">TERSEDIA</span></div><div class="ti"><div class="tid"></div>KOPI WARISAN <span class="tih">#1 THIS WEEK</span></div><div class="ti"><div class="tid"></div>SEN &ndash; SAB <span class="tih">09:00 &ndash; 00:00</span></div><div class="ti"><div class="tid"></div>KOPI DARI BIREUEN <span class="tih">TERBAIK</span></div><div class="ti"><div class="tid"></div>ORDER WA <span class="tih">0823 1533 9915</span></div><div class="ti"><div class="tid"></div>KOPI BOTOL <span class="tih">27K &ndash; 95K</span></div><div class="ti"><div class="tid"></div>30+ VARIAN <span class="tih">TERSEDIA</span></div></div></div>
@@ -418,6 +418,12 @@ function sendGrp(){
 }
 
 rb();renderMbrs();
+
+setTimeout(function(){
+  var s=document.getElementById('spl');
+  if(s){s.style.display='none';}
+},3200);
+
 </script>
 </body>
 </html>
