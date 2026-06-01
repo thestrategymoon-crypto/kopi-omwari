@@ -3,608 +3,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Kopi Omwari</title>
+<title>Kopi Omwari &mdash; Order Online</title>
 <style>
+/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+/* ===== VARIABLES ===== */
 :root{
-  --bg:#060608;--dk:#0E0E12;--cd:#13131A;--c2:#1C1C24;
+  --bg:#060608;
+  --dk:#0E0E12;
+  --card:#13131A;
   --bd:rgba(255,255,255,.07);
-  --gd:#C9962A;--g2:#F0C060;--gl:rgba(201,150,42,.12);
-  --gr:#3DD68C;--wh:#F5F5F7;--mt:rgba(245,245,247,.38);--m2:rgba(245,245,247,.6);
-  --wa:#25D366;--rd:#FF453A
+  --gd:#C9962A;
+  --g2:#F0C060;
+  --gr:#3DD68C;
+  --wh:#F5F5F7;
+  --mt:rgba(245,245,247,.38);
+  --m2:rgba(245,245,247,.6);
+  --wa:#25D366;
+  --rd:#FF453A;
 }
-body.lm{
-  --bg:#F4F4F0;--dk:#E8E8E4;--cd:#FFFFFF;--c2:#EEEEE9;
-  --bd:rgba(0,0,0,.08);--gd:#9A6A10;--g2:#B88010;--gl:rgba(154,106,16,.1);
-  --wh:#1A1A1A;--mt:rgba(26,26,26,.4);--m2:rgba(26,26,26,.65)
-}
-body.lm #spl{background:#F4F4F0}
-body.lm .sr,.body.lm .so2{color:rgba(26,26,26,.85)}
-body.lm .rng{stroke:rgba(0,0,0,.75)}
-body.lm .rng6{fill:#1A1A1A;stroke:none}
-body.lm .topbar{background:rgba(244,244,240,.97)}
-body.lm .ticker{background:#E8E8E4}
-body.lm .tabs{background:#EEEEE9}
-body.lm #main{background:#F4F4F0}
-body.lm .lbc1{background:linear-gradient(135deg,#FFF6E0,#FFEEBB)}
-body.lm .lbc2{background:linear-gradient(135deg,#EEF9F3,#E0F5EC)}
-body.lm .lbc3{background:#FFF}
-body.lm .mi{background:#FFF}
-body.lm .mi.feat{background:linear-gradient(135deg,#FFFAF0,#FFF4DC)}
-body.lm .sbox{background:#FFF}
-body.lm .obar{background:rgba(244,244,240,.97)}
-body.lm .qb.qm{background:#EEEEE9;color:#1A1A1A}
-body.lm .qn{background:rgba(0,0,0,.05);color:#1A1A1A}
-body.lm .tgbox{background:#FFF}
-body.lm .bbnr{background:linear-gradient(135deg,#FFF6E0,#FFF0CC)}
-body.lm .panel{background:#F4F4F0}
-body.lm .ph,.body.lm .pf{background:rgba(244,244,240,.98)}
-body.lm .oi,.body.lm .cs,.body.lm .popt,.body.lm .ptb,.body.lm .mc{background:#FFF}
-body.lm .minp,.body.lm .msel,.body.lm .mqty{background:#EEEEE9;color:#1A1A1A}
-body.lm .badgep{background:rgba(240,240,235,.95)}
-body.lm .badgec{background:linear-gradient(135deg,#FFF6E0,#FFEEBB)}
 
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--wh);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  -webkit-font-smoothing:antialiased}
-
-/* SPLASH */
-#spl{
-  position:fixed;inset:0;z-index:9999;background:var(--bg);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  cursor:pointer;transition:opacity .6s ease
+/* ===== BASE ===== */
+html,body{
+  height:100%;
+  background:var(--bg);
+  color:var(--wh);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
-#spl.fade{opacity:0}
-.rng{fill:none;stroke:#fff;stroke-linecap:round;stroke-dasharray:2000;stroke-dashoffset:2000;
-  animation:dring .85s cubic-bezier(.4,0,.2,1) forwards}
-.rng1{stroke-width:7;animation-delay:0s}
-.rng2{stroke-width:6.5;animation-delay:.18s}
-.rng3{stroke-width:6;animation-delay:.36s}
-.rng4{stroke-width:5.5;animation-delay:.54s}
-.rng5{stroke-width:5;animation-delay:.72s}
-.rng6{animation-delay:.9s}
-@keyframes dring{0%{stroke-dashoffset:2000;opacity:0}15%{opacity:1}100%{stroke-dashoffset:0}}
-.sr{font-family:Georgia,serif;font-size:26px;font-weight:700;color:rgba(255,255,255,.88);letter-spacing:6px}
-.so2{font-family:Georgia,serif;font-size:26px;font-weight:700;color:var(--g2);letter-spacing:6px}
-.sa{display:flex;align-items:baseline;gap:8px;opacity:0;transform:translateY(12px);animation:fup .6s ease 1.2s forwards}
-.sd{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,150,42,.5),transparent);margin:10px auto;animation:gwid .6s ease 1.5s forwards}
-.sl{font-size:9px;color:rgba(255,255,255,.28);letter-spacing:4px;text-transform:uppercase;opacity:0;animation:fup .5s ease 1.7s forwards}
-.sh{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:2px;margin-top:22px;opacity:0;animation:fup .5s ease 2s forwards}
-@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes gwid{from{width:0}to{width:90px}}
+
+/* ===== PURE CSS TABS - radio inputs MUST be first ===== */
+#t1,#t2,#t3,#t4,#t5,#t6{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+/* ===== LAYOUT ===== */
+.site{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  background:rgba(6,6,8,.96);
+  border-bottom:1px solid var(--bd);
+  padding:0 14px;
+  height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+  position:relative;
+}
+.topbar::after{
+  content:"";
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,150,42,.3),transparent);
+}
+.t-left{display:flex;align-items:center;gap:10px}
+.t-brand{
+  font-family:Georgia,serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--wh);
+}
+.t-brand span{color:var(--g2)}
+.t-loc{font-size:8px;color:var(--mt);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.live-pill{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,69,58,.1);
+  border:1px solid rgba(255,69,58,.2);
+  border-radius:100px;padding:4px 10px;
+}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--rd);animation:blink 1s infinite}
+.live-txt{font-size:9px;font-weight:700;color:var(--rd);letter-spacing:1.5px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ===== TICKER ===== */
+.ticker{
+  background:var(--dk);
+  border-bottom:1px solid var(--bd);
+  overflow:hidden;
+  padding:7px 0;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ticker-inner{display:inline-flex;animation:scrolltick 26s linear infinite}
 @keyframes scrolltick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0 20px;
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--mt);border-right:1px solid var(--bd);
+}
+.ti-dot{width:3px;height:3px;border-radius:50%;background:var(--gd);flex-shrink:0}
+.ti-hi{color:var(--g2);font-weight:700}
 
-/* APP */
-#app{position:fixed;inset:0;display:flex;flex-direction:column;overflow:hidden}
+/* ===== CSS TABS BAR ===== */
+.tab-bar{
+  display:flex;
+  overflow-x:auto;
+  flex-shrink:0;
+  background:var(--dk);
+  border-bottom:1px solid var(--bd);
+  scrollbar-width:none;
+  padding:0 6px;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-bar label{
+  flex-shrink:0;
+  display:block;
+  padding:11px 13px;
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--mt);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;
+  transition:color .2s,border-color .2s;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.tab-bar label:active{opacity:.7}
 
-/* TOPBAR */
-.topbar{background:rgba(6,6,8,.96);border-bottom:1px solid var(--bd);padding:0 14px;height:54px;
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-  backdrop-filter:blur(20px);position:relative;z-index:10}
-.topbar::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(201,150,42,.25),transparent)}
-.tleft{display:flex;align-items:center;gap:10px}
-.ttxt{display:flex;flex-direction:column;gap:1px}
-.tbrand{font-family:Georgia,serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;line-height:1;color:var(--wh)}
-.tbrand span{color:var(--g2)}
-.tloc{font-size:8px;color:var(--mt);letter-spacing:2px;text-transform:uppercase}
-.tright{display:flex;align-items:center;gap:8px}
-.thbtn{width:34px;height:34px;border-radius:9px;background:var(--cd);border:1px solid var(--bd);
-  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;
-  flex-shrink:0;-webkit-appearance:none;outline:none}
-.thbtn:active{transform:scale(.9)}
-.livepill{display:flex;align-items:center;gap:5px;background:rgba(255,69,58,.1);
-  border:1px solid rgba(255,69,58,.2);border-radius:100px;padding:4px 10px}
-.livdot{width:5px;height:5px;border-radius:50%;background:var(--rd);animation:blink 1s infinite}
-.livtxt{font-size:9px;font-weight:700;color:var(--rd);letter-spacing:1.5px}
+/* Active tab states - CSS magic */
+#t1:checked ~ .site .tab-bar label[for="t1"],
+#t2:checked ~ .site .tab-bar label[for="t2"],
+#t3:checked ~ .site .tab-bar label[for="t3"],
+#t4:checked ~ .site .tab-bar label[for="t4"],
+#t5:checked ~ .site .tab-bar label[for="t5"],
+#t6:checked ~ .site .tab-bar label[for="t6"]{
+  color:var(--g2);
+  border-bottom-color:var(--gd);
+}
 
-/* TICKER */
-.ticker{background:var(--dk);border-bottom:1px solid var(--bd);overflow:hidden;padding:7px 0;white-space:nowrap;flex-shrink:0}
-.ticw{display:inline-flex;animation:scrolltick 24s linear infinite}
-.tic{display:inline-flex;align-items:center;gap:6px;padding:0 20px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mt);border-right:1px solid var(--bd)}
-.ticd{width:3px;height:3px;border-radius:50%;background:var(--gd);flex-shrink:0}
-.tich{color:var(--g2);font-weight:700}
+/* ===== CONTENT ===== */
+.content-area{
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:none;
+  padding-bottom:100px;
+}
+.content-area::-webkit-scrollbar{display:none}
 
-/* TABS */
-.tabs{display:flex;overflow-x:auto;flex-shrink:0;background:var(--dk);border-bottom:1px solid var(--bd);scrollbar-width:none;padding:0 6px}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:10px 13px;font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mt);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;-webkit-appearance:none;outline:none}
-.tab.on{color:var(--g2);border-bottom-color:var(--gd)}
+/* All panes hidden by default */
+.pane{display:none}
 
-/* CONTENT */
-#main{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding-bottom:130px}
-#main::-webkit-scrollbar{display:none}
+/* Show correct pane based on checked radio */
+#t1:checked ~ .site .content-area .pane-live,
+#t2:checked ~ .site .content-area .pane-botol,
+#t3:checked ~ .site .content-area .pane-elit,
+#t4:checked ~ .site .content-area .pane-medium,
+#t5:checked ~ .site .content-area .pane-easy,
+#t6:checked ~ .site .content-area .pane-mayoritas{
+  display:block;
+}
 
-/* LIVE STATS */
-.lhero{padding:18px 16px 16px;background:linear-gradient(180deg,rgba(201,150,42,.05) 0%,transparent);border-bottom:1px solid var(--bd)}
+/* ===== LIVE PANE ===== */
+.live-hero{
+  padding:18px 16px 16px;
+  background:linear-gradient(180deg,rgba(201,150,42,.05) 0%,transparent 100%);
+  border-bottom:1px solid var(--bd);
+}
 .ley{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.leyd{width:6px;height:6px;border-radius:50%;background:var(--rd);animation:blink 1s infinite}
-.leyt{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--m2)}
-.leyb{margin-left:auto;background:var(--gl);border:1px solid rgba(201,150,42,.25);border-radius:4px;padding:2px 8px;font-size:8px;color:var(--g2);letter-spacing:1.5px;font-weight:700}
+.ley-dot{width:6px;height:6px;border-radius:50%;background:var(--rd);animation:blink 1s infinite}
+.ley-txt{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--m2)}
+.ley-bdg{
+  margin-left:auto;
+  background:rgba(201,150,42,.12);
+  border:1px solid rgba(201,150,42,.25);
+  border-radius:4px;padding:2px 8px;
+  font-size:8px;color:var(--g2);letter-spacing:1.5px;font-weight:700;
+}
+
+/* Leaderboard */
 .lboard{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
-.lbc{border-radius:10px;padding:13px 15px;display:flex;align-items:center;gap:11px;position:relative;overflow:hidden;cursor:pointer;border:1px solid transparent;transition:transform .15s}
-.lbc:active{transform:scale(.985)}
+.lbc{
+  border-radius:10px;padding:13px 15px;
+  display:flex;align-items:center;gap:11px;
+  position:relative;overflow:hidden;
+  border:1px solid transparent;
+}
 .lbc1{background:linear-gradient(135deg,#1C1500,#241E00);border-color:rgba(201,150,42,.35)}
 .lbc2{background:linear-gradient(135deg,#101810,#141E14);border-color:rgba(61,214,140,.2)}
-.lbc3{background:var(--cd);border-color:var(--bd)}
-.lrk{font-size:11px;font-weight:800;width:24px;text-align:center;flex-shrink:0}
-.lbc1 .lrk{color:var(--g2);opacity:.8}
-.lbc2 .lrk{color:var(--gr);opacity:.7}
-.lbc3 .lrk{color:rgba(255,255,255,.3)}
-.lmed{font-size:17px;flex-shrink:0}
-.linf{flex:1;min-width:0}
-.lnm{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lbc1 .lnm{color:var(--g2)}
-.lbc2 .lnm{color:var(--gr)}
-.lbc3 .lnm{color:rgba(255,255,255,.6)}
-.lsub{font-size:8.5px;color:var(--mt);margin-top:2px;letter-spacing:.5px}
-.lrt{text-align:right;flex-shrink:0}
-.lcup{font-size:1.3rem;font-weight:800;line-height:1;font-family:Georgia,serif}
-.lbc1 .lcup{color:var(--gd)}
-.lbc2 .lcup{color:var(--gr)}
-.lbc3 .lcup{color:rgba(255,255,255,.4)}
-.lunit{font-size:8px;color:var(--mt);letter-spacing:1px;margin-top:2px}
-.lbw{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.03)}
-.lbar{height:100%;transition:width 2s ease;width:0}
-.lbc1 .lbar{background:linear-gradient(90deg,var(--gd),var(--g2))}
-.lbc2 .lbar{background:linear-gradient(90deg,var(--gr),#86efac)}
-.lbc3 .lbar{background:rgba(255,255,255,.12)}
-.srow{display:flex;gap:7px}
-.sbox{flex:1;border-radius:9px;padding:10px 8px;text-align:center;background:var(--cd);border:1px solid var(--bd)}
-.sv{font-size:1rem;font-weight:800;display:block;font-family:Georgia,serif}
-.sl2{font-size:8px;color:var(--mt);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;display:block}
-.tgbox{margin:16px 16px 0;background:linear-gradient(135deg,#0E0E12,#13131A);border:1px solid var(--bd);border-radius:12px;padding:16px;position:relative;overflow:hidden}
-.tgbox::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gd),transparent)}
-.tgl{font-size:8px;font-weight:700;letter-spacing:3px;color:var(--gd);text-transform:uppercase;margin-bottom:7px}
-.tgm{font-size:15px;font-weight:800;color:var(--wh);line-height:1.2;margin-bottom:4px;font-family:Georgia,serif}
-.tgs{font-size:11px;color:var(--m2);line-height:1.5}
+.lbc3{background:var(--card);border-color:var(--bd)}
+.lb-rk{font-size:11px;font-weight:800;width:24px;text-align:center;flex-shrink:0;opacity:.5}
+.lbc1 .lb-rk{color:var(--g2);opacity:.8}
+.lbc2 .lb-rk{color:var(--gr);opacity:.7}
+.lbc3 .lb-rk{color:rgba(255,255,255,.3)}
+.lb-md{font-size:17px;flex-shrink:0}
+.lb-info{flex:1;min-width:0}
+.lb-name{
+  font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.lbc1 .lb-name{color:var(--g2)}
+.lbc2 .lb-name{color:var(--gr)}
+.lbc3 .lb-name{color:rgba(255,255,255,.6)}
+.lb-sub{font-size:8.5px;color:var(--mt);margin-top:2px;letter-spacing:.5px}
+.lb-right{text-align:right;flex-shrink:0}
+.lb-cup{font-size:1.3rem;font-weight:800;line-height:1;font-family:Georgia,serif}
+.lbc1 .lb-cup{color:var(--gd)}
+.lbc2 .lb-cup{color:var(--gr)}
+.lbc3 .lb-cup{color:rgba(255,255,255,.4)}
+.lb-unit{font-size:8px;color:var(--mt);letter-spacing:1px;margin-top:2px}
+.lb-bw{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.03)}
+.lb-bar{height:100%}
+.lbc1 .lb-bar{background:linear-gradient(90deg,var(--gd),var(--g2));width:100%}
+.lbc2 .lb-bar{background:linear-gradient(90deg,var(--gr),#86efac);width:58%}
+.lbc3 .lb-bar{background:rgba(255,255,255,.12);width:49%}
 
-/* MENU SECTIONS */
+/* Stats row */
+.stats-row{display:flex;gap:7px}
+.stat-box{
+  flex:1;border-radius:9px;padding:10px 8px;text-align:center;
+  background:var(--card);border:1px solid var(--bd);
+}
+.stat-v{font-size:1rem;font-weight:800;display:block;font-family:Georgia,serif}
+.stat-l{font-size:8px;color:var(--mt);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;display:block}
+
+/* Tagline */
+.tagline{
+  margin:16px 16px 0;
+  background:linear-gradient(135deg,#0E0E12,#13131A);
+  border:1px solid var(--bd);border-radius:12px;padding:16px;
+  position:relative;overflow:hidden;
+}
+.tagline::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gd),transparent);
+}
+.tg-lbl{font-size:8px;font-weight:700;letter-spacing:3px;color:var(--gd);text-transform:uppercase;margin-bottom:7px}
+.tg-main{font-size:15px;font-weight:800;color:var(--wh);line-height:1.2;margin-bottom:4px;font-family:Georgia,serif}
+.tg-sub{font-size:11px;color:var(--m2);line-height:1.5}
+
+/* Payment info in live tab */
+.pay-info{
+  margin:16px 16px 0;
+  background:var(--card);border:1px solid var(--bd);border-radius:12px;
+  padding:16px;position:relative;overflow:hidden;
+}
+.pay-info::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gd),transparent);
+}
+.pay-label{font-size:8px;font-weight:700;letter-spacing:3px;color:var(--gd);text-transform:uppercase;margin-bottom:10px}
+.pay-bank{font-size:11px;font-weight:700;color:var(--g2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.pay-rek{font-size:22px;font-weight:300;color:var(--wh);letter-spacing:2px;margin-bottom:3px;font-family:Georgia,serif}
+.pay-name{font-size:10px;color:var(--mt)}
+
+/* WA Order Button */
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin:16px 16px 0;
+  background:var(--wa);
+  border-radius:12px;padding:16px;
+  text-decoration:none;color:#fff;
+  font-size:13px;font-weight:800;letter-spacing:1px;
+  font-family:Georgia,serif;
+}
+.wa-btn:active{opacity:.85}
+
+/* Hours */
+.hours-box{
+  margin:12px 16px 0;
+  background:var(--card);border:1px solid var(--bd);border-radius:10px;
+  padding:12px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.hours-lbl{font-size:9px;color:var(--mt);letter-spacing:2px;text-transform:uppercase}
+.hours-val{font-size:12px;font-weight:700;color:var(--g2);letter-spacing:1px}
+
+/* ===== MENU SECTIONS ===== */
 .msec{padding:4px 16px}
 .mhdr{display:flex;align-items:center;gap:10px;margin:18px 0 10px}
-.mbdg{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;flex-shrink:0;border-radius:4px}
+.mbdg{
+  font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;flex-shrink:0;border-radius:4px;
+}
 .mbdg.elit{background:var(--gd);color:#060608}
-.mbdg.bot{background:var(--gl);color:var(--g2);border:1px solid rgba(201,150,42,.3)}
+.mbdg.bot{background:rgba(201,150,42,.12);color:var(--g2);border:1px solid rgba(201,150,42,.3)}
 .mbdg.med{background:rgba(201,150,42,.08);color:var(--g2);border:1px solid rgba(201,150,42,.2)}
 .mbdg.esy{background:rgba(61,214,140,.1);color:var(--gr);border:1px solid rgba(61,214,140,.2)}
 .mbdg.maj{background:rgba(255,255,255,.04);color:var(--m2);border:1px solid var(--bd)}
 .mln{flex:1;height:1px;background:var(--bd)}
 
-.mi{background:var(--cd);border:1px solid var(--bd);border-radius:11px;display:flex;align-items:center;padding:12px 13px;margin-bottom:7px;transition:border-color .2s;position:relative;overflow:hidden}
-.mi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bd);border-radius:3px 0 0 3px;transition:background .2s}
-.mi.sel{border-color:rgba(201,150,42,.35);background:linear-gradient(135deg,#141208,#171712)}
-.mi.sel::before{background:var(--gd)}
-.mi.feat{background:linear-gradient(135deg,#141208,#1A1A0E);border-color:rgba(201,150,42,.1)}
+/* Menu item - each one is a WA link */
+.menu-item{
+  display:flex;align-items:center;
+  background:var(--card);border:1px solid var(--bd);
+  border-radius:11px;padding:12px 13px;margin-bottom:7px;
+  text-decoration:none;color:inherit;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,background .2s;
+}
+.menu-item::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--bd);border-radius:3px 0 0 3px;transition:background .2s;
+}
+.menu-item:active{background:rgba(201,150,42,.06);border-color:rgba(201,150,42,.3)}
+.menu-item:active::before{background:var(--gd)}
+.menu-item.feat{background:linear-gradient(135deg,#141208,#1A1A0E);border-color:rgba(201,150,42,.1)}
 .mi-info{flex:1;min-width:0}
-.mi-name{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--wh);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mi.feat .mi-name{color:var(--g2)}
+.mi-name{
+  font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--wh);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.menu-item.feat .mi-name{color:var(--g2)}
 .mi-sub{font-size:9px;color:var(--mt);margin-top:2px}
 .mi-price{font-size:13px;font-weight:800;color:var(--gd);flex-shrink:0;margin:0 10px;font-family:Georgia,serif}
-.qc{display:flex;align-items:center;flex-shrink:0}
-.qb{width:28px;height:28px;border:1px solid var(--bd);background:var(--c2);color:var(--wh);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none;-webkit-appearance:none;outline:none;font-weight:300}
-.qb:active{transform:scale(.88)}
-.qb.qm{border-radius:7px 0 0 7px}
-.qb.qp{border-radius:0 7px 7px 0;background:var(--gd);color:#060608;border-color:var(--gd);font-weight:700}
-.qn{width:32px;height:28px;background:rgba(0,0,0,.35);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--wh)}
-.qn.on{color:var(--g2)}
-.bbnr{background:linear-gradient(135deg,#1A1400,#201800);border:1px solid rgba(201,150,42,.2);border-radius:11px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.mi-arrow{font-size:14px;color:rgba(201,150,42,.4);flex-shrink:0}
 
-/* ORDER BAR - key fix: starts off screen, slides up when .on */
-.obar{position:fixed;bottom:0;left:0;right:0;z-index:100;
-  background:rgba(6,6,8,.97);border-top:1px solid rgba(201,150,42,.25);
-  padding:10px 16px 28px;backdrop-filter:blur(20px);
-  transform:translateY(100%);transition:transform .3s ease}
-.obar.on{transform:translateY(0)}
-.obi{display:flex;align-items:center;gap:10px}
-.obs{flex:1}
-.obc{font-size:10px;color:var(--mt);letter-spacing:1px}
-.obt{font-size:1.2rem;font-weight:800;color:var(--g2);line-height:1.1;font-family:Georgia,serif}
-.cobtn{background:linear-gradient(135deg,var(--gd),var(--g2));border:none;border-radius:10px;
-  padding:13px 20px;font-size:12px;font-weight:800;color:#060608;letter-spacing:1px;cursor:pointer;
-  display:flex;align-items:center;gap:6px;flex-shrink:0;box-shadow:0 4px 20px rgba(201,150,42,.35);
-  -webkit-appearance:none;outline:none}
-.cobtn:active{transform:scale(.97)}
+/* Botol banner */
+.botol-bnr{
+  background:linear-gradient(135deg,#1A1400,#201800);
+  border:1px solid rgba(201,150,42,.2);border-radius:11px;
+  padding:12px 14px;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.bnr-title{font-size:11px;font-weight:800;color:var(--g2);letter-spacing:1px}
+.bnr-sub{font-size:9px;color:var(--mt);margin-top:3px}
 
-/* PANELS */
-.panel{position:fixed;inset:0;z-index:200;background:var(--bg);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
-.panel.on{transform:translateX(0)}
-.ph{padding:13px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-shrink:0;background:rgba(6,6,8,.98)}
-.pbk{width:34px;height:34px;border-radius:8px;background:var(--cd);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;flex-shrink:0;-webkit-appearance:none;outline:none}
-.pbk:active{background:var(--c2)}
-.ptt{font-size:14px;font-weight:800;font-family:Georgia,serif}
-.pb{flex:1;overflow-y:auto;padding:16px;scrollbar-width:none;padding-bottom:110px}
-.pb::-webkit-scrollbar{display:none}
-.pf{padding:12px 16px 28px;border-top:1px solid var(--bd);background:rgba(6,6,8,.98);flex-shrink:0}
-
-.oi{display:flex;align-items:center;justify-content:space-between;background:var(--cd);border:1px solid var(--bd);border-radius:9px;padding:10px 13px;margin-bottom:7px}
-.oin{font-size:12px;font-weight:600}
-.oid{font-size:10px;color:var(--mt);margin-top:2px}
-.oia{font-size:13px;font-weight:800;color:var(--gd);font-family:Georgia,serif}
-.totrow{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--bd);margin-top:4px}
-.totl{font-size:11px;color:var(--mt);letter-spacing:2px;text-transform:uppercase}
-.totv{font-size:1.6rem;font-weight:800;color:var(--g2);font-family:Georgia,serif}
-.popt{background:var(--cd);border:2px solid var(--bd);border-radius:11px;padding:15px;margin-bottom:8px}
-.popt.sel{border-color:var(--gd);background:linear-gradient(135deg,#1A1400,#161208)}
-.pbnk{font-size:11px;font-weight:800;color:var(--gd);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
-.prek{font-size:18px;font-weight:300;color:var(--wh);letter-spacing:2px}
-.pnam{font-size:10px;color:var(--mt);margin-top:3px}
-.ptb{background:var(--cd);border:1px solid var(--bd);border-radius:9px;padding:13px;margin-bottom:13px}
-.ptbl{font-size:10px;color:var(--mt);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.ptbv{font-size:1.6rem;font-weight:800;color:var(--g2);font-family:Georgia,serif}
-.wrn{background:rgba(255,69,58,.05);border:1px solid rgba(255,69,58,.15);border-left:3px solid var(--rd);border-radius:7px;padding:11px 13px;margin-bottom:12px;font-size:11px;color:var(--m2);line-height:1.6}
-.wrn b{color:var(--rd)}
-.cs{display:flex;align-items:flex-start;gap:12px;background:var(--cd);border:1px solid var(--bd);border-radius:9px;padding:13px;margin-bottom:8px}
-.csn{width:24px;height:24px;border-radius:50%;background:var(--gr);color:#060608;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cst{font-size:12px;font-weight:600}
-.csd{font-size:10px;color:var(--mt);margin-top:2px;line-height:1.5}
-
-/* STEP INDICATOR */
-.sp{display:flex;align-items:center;margin-bottom:15px;padding:0 4px}
-.spnd{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
-.spc{width:22px;height:22px;border-radius:50%;border:2px solid var(--bd);background:var(--cd);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--mt)}
-.spc.ac{border-color:var(--gd);background:var(--gd);color:#060608}
-.spc.dn{border-color:var(--gr);background:var(--gr);color:#060608}
-.spl2{font-size:7.5px;color:var(--mt);text-align:center;white-space:nowrap}
-.spl2.ac{color:var(--g2)}
-.spl2.dn{color:var(--gr)}
-.spln{flex:1;height:2px;background:var(--bd);margin:0 2px;margin-bottom:12px}
-.spln.dn{background:var(--gr)}
-
-/* BUTTONS */
-.bgo{width:100%;background:linear-gradient(135deg,var(--gd),var(--g2));border:none;border-radius:11px;padding:14px;font-size:13px;font-weight:800;color:#060608;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-appearance:none;outline:none}
-.bgo:active{transform:scale(.98)}
-.bwa{width:100%;background:var(--wa);border:none;border-radius:11px;padding:14px;font-size:13px;font-weight:800;color:#fff;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;-webkit-appearance:none;outline:none}
-.bwa:active{transform:scale(.98)}
-.bgh{width:100%;background:transparent;border:1px solid var(--bd);border-radius:11px;padding:11px;font-size:11px;color:var(--mt);cursor:pointer;letter-spacing:1px;margin-top:8px;-webkit-appearance:none;outline:none}
-
-/* GROUP FAB */
-.gfab{position:fixed;bottom:95px;right:14px;z-index:99;width:46px;height:46px;border-radius:50%;background:var(--c2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:19px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:all .2s;opacity:0;pointer-events:none;-webkit-appearance:none;outline:none}
-.gfab.on{opacity:1;pointer-events:all}
-.gfab:active{transform:scale(.92)}
-
-/* GROUP ORDER */
-.mc{background:var(--cd);border:1px solid var(--bd);border-radius:11px;padding:13px;margin-bottom:8px}
-.mhd{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.minp{background:var(--c2);border:1px solid var(--bd);border-radius:7px;padding:7px 11px;font-size:12px;font-weight:700;color:var(--wh);flex:1;outline:none;min-width:0;-webkit-appearance:none}
-.minp::placeholder{color:var(--mt);font-weight:400}
-.mdel{font-size:16px;color:var(--mt);cursor:pointer;padding:3px;flex-shrink:0}
-.mrow{display:flex;align-items:center;gap:7px;margin-bottom:6px}
-.msel{flex:1;background:var(--c2);border:1px solid var(--bd);border-radius:7px;padding:7px 9px;font-size:11px;color:var(--wh);outline:none;min-width:0;-webkit-appearance:none}
-.mqty{width:44px;background:var(--c2);border:1px solid var(--bd);border-radius:7px;padding:7px;text-align:center;font-size:12px;font-weight:700;color:var(--wh);outline:none;-webkit-appearance:none}
-.mdel2{font-size:14px;color:var(--mt);cursor:pointer;padding:3px;flex-shrink:0}
-.ami{display:flex;align-items:center;gap:5px;margin-top:7px;cursor:pointer;font-size:11px;color:var(--gd);font-weight:600}
-.gtr{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--bd);margin-top:4px}
-
-/* BADGE */
-.badgep{position:fixed;inset:0;z-index:400;background:rgba(6,6,8,.92);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .4s ease}
-.badgep.on{opacity:1;pointer-events:all}
-.badgec{background:linear-gradient(135deg,#1A1500,#241E00);border:1.5px solid rgba(201,150,42,.45);border-radius:18px;padding:28px 24px;text-align:center;width:100%;max-width:300px;position:relative;overflow:hidden}
-.badgec::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gd),transparent)}
-.bgl{width:70px;height:70px;margin:0 auto 13px}
-.bgt1{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gd);text-transform:uppercase;margin-bottom:5px}
-.bgt2{font-size:20px;font-weight:800;color:var(--wh);line-height:1.1;margin-bottom:3px;font-family:Georgia,serif}
-.bgt2 span{color:var(--g2)}
-.bgt3{font-size:9px;color:var(--mt);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-.bgdv{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gd),transparent);margin:0 auto 13px}
-.bgdc{font-size:11px;color:var(--m2);line-height:1.6;margin-bottom:14px}
-.bgst{display:inline-flex;align-items:center;gap:5px;background:rgba(201,150,42,.1);border:1px solid rgba(201,150,42,.25);border-radius:100px;padding:5px 12px;font-size:9px;color:var(--gd);letter-spacing:1.5px;font-weight:700}
-.bgac{display:flex;flex-direction:column;gap:8px;margin-top:16px;width:100%;max-width:300px}
-.bgwa{width:100%;background:var(--wa);border:none;border-radius:11px;padding:13px;font-size:12px;font-weight:800;color:#fff;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-appearance:none;outline:none}
-.bgcl{width:100%;background:transparent;border:1px solid var(--bd);border-radius:11px;padding:10px;font-size:11px;color:var(--mt);cursor:pointer;-webkit-appearance:none;outline:none}
+/* ===== BOTTOM WA FIXED BAR ===== */
+.bottom-bar{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:50;
+  padding:10px 16px 24px;
+  background:linear-gradient(to top,rgba(6,6,8,1) 60%,transparent);
+}
+.bottom-wa{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--wa);border-radius:12px;padding:14px;
+  text-decoration:none;color:#fff;
+  font-size:13px;font-weight:800;letter-spacing:1px;
+  box-shadow:0 4px 24px rgba(37,211,102,.35);
+}
+.bottom-wa:active{opacity:.85;transform:scale(.98)}
 </style>
 </head>
 <body>
-<div id="spl" onclick="splHide()"><div style="margin-bottom:28px"><svg viewBox="0 0 200 200" width="180" height="180"><circle class="rng rng1" cx="100" cy="100" r="93" fill="none"/><circle class="rng rng2" cx="100" cy="100" r="75" fill="none"/><circle class="rng rng3" cx="100" cy="100" r="57" fill="none"/><circle class="rng rng4" cx="100" cy="100" r="40" fill="none"/><circle class="rng rng5" cx="100" cy="100" r="24" fill="none"/><circle class="rng rng6" cx="100" cy="100" r="8" stroke="none" fill="white"/></svg></div><div style="text-align:center"><div class="sa"><span class="sr">KOPI&nbsp;</span><span class="so2">OMWARI</span></div><div class="sd"></div><div class="sl">COT GAPU &middot; BIREUEN &middot; ACEH</div><div class="sh">Tap untuk membuka &rarr;</div></div></div>
-<div id="app">
-<div class="topbar"><div class="tleft"><svg viewBox="0 0 200 200" width="30" height="30" style="flex-shrink:0"><circle cx="100" cy="100" r="93" fill="none" stroke="#fff" stroke-width="7"/><circle cx="100" cy="100" r="75" fill="none" stroke="#fff" stroke-width="6.5"/><circle cx="100" cy="100" r="57" fill="none" stroke="#fff" stroke-width="6"/><circle cx="100" cy="100" r="40" fill="none" stroke="#fff" stroke-width="5.5"/><circle cx="100" cy="100" r="24" fill="none" stroke="#fff" stroke-width="5"/><circle cx="100" cy="100" r="8" fill="#fff"/></svg><div class="ttxt"><div class="tbrand">KOPI <span>OMWARI</span></div><div class="tloc">Cot Gapu &middot; Bireuen</div></div></div><div class="tright"><button class="thbtn" id="thbtn" onclick="toggleTheme()">&#127769;</button><div class="livepill"><div class="livdot"></div><div class="livtxt">LIVE</div></div></div></div>
-<div class="ticker"><div class="ticw"><div class="tic"><div class="ticd"></div>KOPI WARISAN <span class="tich">#1 THIS WEEK</span></div><div class="tic"><div class="ticd"></div>SEN &ndash; SAB <span class="tich">09:00 &ndash; 00:00</span></div><div class="tic"><div class="ticd"></div>KOPI DARI BIREUEN <span class="tich">TERBAIK</span></div><div class="tic"><div class="ticd"></div>ORDER WA <span class="tich">0823 1533 9915</span></div><div class="tic"><div class="ticd"></div>KOPI BOTOL <span class="tich">27K &ndash; 95K</span></div><div class="tic"><div class="ticd"></div>30+ VARIAN <span class="tich">TERSEDIA</span></div><div class="tic"><div class="ticd"></div>KOPI WARISAN <span class="tich">#1 THIS WEEK</span></div><div class="tic"><div class="ticd"></div>SEN &ndash; SAB <span class="tich">09:00 &ndash; 00:00</span></div><div class="tic"><div class="ticd"></div>KOPI DARI BIREUEN <span class="tich">TERBAIK</span></div><div class="tic"><div class="ticd"></div>ORDER WA <span class="tich">0823 1533 9915</span></div><div class="tic"><div class="ticd"></div>KOPI BOTOL <span class="tich">27K &ndash; 95K</span></div><div class="tic"><div class="ticd"></div>30+ VARIAN <span class="tich">TERSEDIA</span></div></div></div>
-<div class="tabs"><button class="tab on" onclick="goTab('sl',this)">&#128308; Live</button><button class="tab" onclick="goTab('sb',this)">&#127862; Botol</button><button class="tab" onclick="goTab('se',this)">&#11088; Elit</button><button class="tab" onclick="goTab('sm',this)">&#9749; Medium</button><button class="tab" onclick="goTab('sy',this)">&#127807; Easy</button><button class="tab" onclick="goTab('sj',this)">&#9889; Mayoritas</button></div>
-<div id="main">
-<div id="sl"><div class="lhero"><div class="ley"><div class="leyd"></div><div class="leyt">Weekly Performance</div><div class="leyb">7 HARI</div></div><div class="lboard"><div class="lbc lbc1" onclick="quickAdd('Kopi Warisan',22000)"><div class="lrk">#1</div><div class="lmed">&#127945;</div><div class="linf"><div class="lnm">Kopi Warisan</div><div class="lsub">Racikan Turun-Temurun &middot; Signature</div></div><div class="lrt"><div class="lcup" id="cnt1">750</div><div class="lunit">Cup Terjual</div></div><div class="lbw"><div class="lbar" id="bar1" style="width:100%"></div></div></div><div class="lbc lbc2" onclick="quickAdd('Kopi Aren OW',22000)"><div class="lrk">#2</div><div class="lmed">&#127946;</div><div class="linf"><div class="lnm">Kopi Aren OW</div><div class="lsub">Kopi Aren Original &middot; Andalan Omwari</div></div><div class="lrt"><div class="lcup" id="cnt2">433</div><div class="lunit">Cup Terjual</div></div><div class="lbw"><div class="lbar" id="bar2" style="width:58%"></div></div></div><div class="lbc lbc3" onclick="quickAdd('Kopi Arenila',22000)"><div class="lrk">#3</div><div class="lmed">&#127947;</div><div class="linf"><div class="lnm">Kopi Arenila</div><div class="lsub">Gula Aren Spesial &middot; Fan Favourite</div></div><div class="lrt"><div class="lcup" id="cnt3">370</div><div class="lunit">Cup Terjual</div></div><div class="lbw"><div class="lbar" id="bar3" style="width:49%"></div></div></div></div><div class="srow"><div class="sbox"><span class="sv" style="color:var(--g2)">1.723</span><span class="sl2">Total Cup</span></div><div class="sbox"><span class="sv" style="color:var(--gr)">7 Hari</span><span class="sl2">Periode</span></div><div class="sbox"><span class="sv" style="color:var(--g2)">170</span><span class="sl2">Botol Terjual</span></div></div></div><div class="tgbox"><div class="tgl">// Dari Bireuen, Untuk Bireuen</div><div class="tgm">Kopi Terbaik<br>di Cot Gapu.</div><div class="tgs">Racikan asli, rasa yang melekat. Buka setiap Senin&ndash;Sabtu dari pagi hingga tengah malam.</div></div></div>
-<div class="msec" id="sb"><div class="mhdr"><div class="mbdg bot">&#127862; Kopi Botol</div><div class="mln"></div></div><div class="bbnr"><span style="font-size:20px">&#127862;</span><div><div style="font-size:11px;font-weight:800;color:var(--g2);letter-spacing:1px">WARISAN &middot; ARENILA &middot; PANDAN</div><div style="font-size:9px;color:var(--mt);margin-top:3px">Sebutkan varian saat order &middot; Tersedia kapanpun</div></div></div><div class="mi feat" data-name="Kopi Botol 250ml" data-price="27000"><div class="mi-info"><div class="mi-name">Kopi Botol 250ml</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">27K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi feat" data-name="Kopi Botol 500ml" data-price="50000"><div class="mi-info"><div class="mi-name">Kopi Botol 500ml</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">50K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi feat" data-name="Kopi Botol 1000ml" data-price="95000"><div class="mi-info"><div class="mi-name">Kopi Botol 1000ml</div><div class="mi-sub">Warisan / Arenila / Pandan</div></div><div class="mi-price">95K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div></div>
-<div class="msec" id="se"><div class="mhdr"><div class="mbdg elit">&#11088; Varian Elit</div><div class="mln"></div></div><div class="mi feat" data-name="Kopi Warisan" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Warisan</div><div class="mi-sub">Racikan turun-temurun &#183; Signature</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi feat" data-name="Kopi Arenila" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Arenila</div><div class="mi-sub">Gula aren spesial &#183; Fan favourite</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi feat" data-name="Kopi Aren OW" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Aren OW</div><div class="mi-sub">Kopi aren original &#183; Andalan Omwari</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Istimewa" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Istimewa</div><div class="mi-sub">Kreasi barista &#183; Eksklusif</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Butterscot" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Butterscot</div><div class="mi-sub">Lembut manis &#183; Butterscotch</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Pandan" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Pandan</div><div class="mi-sub">Aroma segar &#183; Herbal</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Tetangga" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Tetangga</div><div class="mi-sub">Khas Omwari &#183; Unik</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Cappuccino" data-price="22000"><div class="mi-info"><div class="mi-name">Cappuccino</div><div class="mi-sub">Milk foam &#183; Italian style</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Latte" data-price="22000"><div class="mi-info"><div class="mi-name">Kopi Latte</div><div class="mi-sub">Smooth &#183; Creamy milk</div></div><div class="mi-price">22K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div></div>
-<div class="msec" id="sm"><div class="mhdr"><div class="mbdg med">&#9749; Varian Medium</div><div class="mln"></div></div><div class="mi" data-name="Kopi Hazelnut" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Hazelnut</div><div class="mi-sub">Nutty &#183; Smooth</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Semangka" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Semangka</div><div class="mi-sub">Segar &#183; Fruity fusion</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Caramel" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Caramel</div><div class="mi-sub">Sweet &#183; Karamel asli</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Avocado" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Avocado</div><div class="mi-sub">Creamy &#183; Alpukat segar</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Coklat" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Coklat</div><div class="mi-sub">Rich &#183; Chocolatey</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Kopi Lemon" data-price="20000"><div class="mi-info"><div class="mi-name">Kopi Lemon</div><div class="mi-sub">Segar &#183; Citrus kick</div></div><div class="mi-price">20K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Coklat Hazelnut" data-price="18000"><div class="mi-info"><div class="mi-name">Coklat Hazelnut</div><div class="mi-sub">Non-coffee &#183; Premium blend</div></div><div class="mi-price">18K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div></div>
-<div class="msec" id="sy"><div class="mhdr"><div class="mbdg esy">&#127807; Varian Easy</div><div class="mln"></div></div><div class="mi" data-name="Matcha" data-price="15000"><div class="mi-info"><div class="mi-name">Matcha</div><div class="mi-sub">Green tea &#183; Earthy</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Strawberry" data-price="15000"><div class="mi-info"><div class="mi-name">Strawberry</div><div class="mi-sub">Fruity &#183; Manis segar</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Blueberry" data-price="15000"><div class="mi-info"><div class="mi-name">Blueberry</div><div class="mi-sub">Fruity &#183; Antioksidan</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Coklat Dingin" data-price="15000"><div class="mi-info"><div class="mi-name">Coklat Dingin</div><div class="mi-sub">Ice cold &#183; Chocolatey</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Taro" data-price="15000"><div class="mi-info"><div class="mi-name">Taro</div><div class="mi-sub">Purple &#183; Creamy talas</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Avocado" data-price="15000"><div class="mi-info"><div class="mi-name">Avocado</div><div class="mi-sub">Non-coffee &#183; Creamy</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Milo Original" data-price="15000"><div class="mi-info"><div class="mi-name">Milo Original</div><div class="mi-sub">Classic &#183; Timeless</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Leci Tea" data-price="15000"><div class="mi-info"><div class="mi-name">Leci Tea</div><div class="mi-sub">Fruity tea &#183; Refreshing</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div></div>
-<div class="msec" id="sj"><div class="mhdr"><div class="mbdg maj">&#9889; Varian Mayoritas</div><div class="mln"></div></div><div class="mi" data-name="Espresso" data-price="11000"><div class="mi-info"><div class="mi-name">Espresso</div><div class="mi-sub">Pure shot &#183; Strong</div></div><div class="mi-price">11K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Sanger Panas" data-price="13000"><div class="mi-info"><div class="mi-name">Sanger Panas</div><div class="mi-sub">Khas Aceh &#183; Hot</div></div><div class="mi-price">13K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Sanger Dingin" data-price="16000"><div class="mi-info"><div class="mi-name">Sanger Dingin</div><div class="mi-sub">Khas Aceh &#183; Iced</div></div><div class="mi-price">16K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Americano" data-price="11000"><div class="mi-info"><div class="mi-name">Americano</div><div class="mi-sub">Classic &#183; Hot</div></div><div class="mi-price">11K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Americano Dingin" data-price="16000"><div class="mi-info"><div class="mi-name">Americano Dingin</div><div class="mi-sub">Classic &#183; Iced</div></div><div class="mi-price">16K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Lemon Madu" data-price="15000"><div class="mi-info"><div class="mi-name">Lemon Madu</div><div class="mi-sub">Segar &#183; Natural honey</div></div><div class="mi-price">15K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Lemon Tea" data-price="10000"><div class="mi-info"><div class="mi-name">Lemon Tea</div><div class="mi-sub">Light &#183; Refreshing</div></div><div class="mi-price">10K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Arummanis" data-price="13000"><div class="mi-info"><div class="mi-name">Arummanis</div><div class="mi-sub">Manis &#183; Khas lokal</div></div><div class="mi-price">13K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div><div class="mi" data-name="Greentea" data-price="10000"><div class="mi-info"><div class="mi-name">Greentea</div><div class="mi-sub">Light &#183; Herbal</div></div><div class="mi-price">10K</div><div class="qc"><button class="qb qm" onclick="cq(this,-1)">-</button><div class="qn">0</div><button class="qb qp" onclick="cq(this,1)">+</button></div></div></div>
-</div>
-<div class="obar" id="obar"><div class="obi"><div class="obs"><div class="obc" id="ocnt">0 item dipilih</div><div class="obt" id="otot">Rp 0</div></div><button class="cobtn" onclick="openP('p1')">&#128722; Checkout &#8594;</button></div></div>
-</div>
-<button class="gfab" id="gfab" onclick="openP('gp')">&#128101;</button>
-<div class="badgep" id="badgep"><div class="badgec"><svg class="bgl" viewBox="0 0 200 200"><circle cx="100" cy="100" r="93" fill="none" stroke="rgba(201,150,42,.55)" stroke-width="6"/><circle cx="100" cy="100" r="75" fill="none" stroke="rgba(201,150,42,.65)" stroke-width="5.5"/><circle cx="100" cy="100" r="57" fill="none" stroke="rgba(201,150,42,.75)" stroke-width="5"/><circle cx="100" cy="100" r="40" fill="none" stroke="rgba(240,192,96,.85)" stroke-width="4.5"/><circle cx="100" cy="100" r="24" fill="none" stroke="#F0C060" stroke-width="4"/><circle cx="100" cy="100" r="8" fill="#F0C060"/></svg><div class="bgt1">Pelanggan Setia</div><div class="bgt2">KOPI <span>OMWARI</span></div><div class="bgt3">Cot Gapu &middot; Bireuen &middot; Aceh</div><div class="bgdv"></div><div class="bgdc">Terima kasih telah mempercayai cita rasa kopi terbaik kami! Pesanan kamu sudah diterima.</div><div class="bgst">ORDER CONFIRMED &middot; <span id="bgamt">Rp 0</span></div></div><div class="bgac"><button class="bgwa" onclick="shareBadge()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Bagikan ke WhatsApp</button><button class="bgcl" onclick="closeP('badgep')">Kembali ke Menu</button></div></div>
-<div class="panel" id="p1"><div class="ph"><button class="pbk" onclick="closeP('p1')">&#8592;</button><div class="ptt">&#128722; Ringkasan Pesanan</div></div><div style="padding:12px 16px 0"><div class="sp"><div class="spnd"><div class="spc ac">1</div><div class="spl2 ac">Pesanan</div></div><div class="spln"></div><div class="spnd"><div class="spc">2</div><div class="spl2">Bayar</div></div><div class="spln"></div><div class="spnd"><div class="spc">3</div><div class="spl2">Kirim Bukti</div></div></div></div><div class="pb"><div id="p1i"></div><div class="totrow"><span class="totl">Total</span><span class="totv" id="p1t">Rp 0</span></div></div><div class="pf"><button class="bgo" onclick="openP('p2')">&#128179; Lanjut ke Pembayaran &#8594;</button><button class="bgh" onclick="closeP('p1')">&#8592; Kembali ke Menu</button></div></div>
-<div class="panel" id="p2"><div class="ph"><button class="pbk" onclick="openP('p1')">&#8592;</button><div class="ptt">&#128179; Pembayaran</div></div><div style="padding:12px 16px 0"><div class="sp"><div class="spnd"><div class="spc dn">&#10003;</div><div class="spl2 dn">Pesanan</div></div><div class="spln dn"></div><div class="spnd"><div class="spc ac">2</div><div class="spl2 ac">Bayar</div></div><div class="spln"></div><div class="spnd"><div class="spc">3</div><div class="spl2">Kirim Bukti</div></div></div></div><div class="pb"><div class="ptb"><div class="ptbl">Transfer sebesar</div><div class="ptbv" id="p2t">Rp 0</div></div><div class="popt sel"><div class="pbnk">Bank Syariah Indonesia (BSI)</div><div class="prek">7216668396</div><div class="pnam">a.n. Ian Mahendra</div></div><div class="wrn"><b>&#9888; PENTING:</b> Transfer tepat sesuai total. Setelah selesai, tap tombol di bawah untuk kirim bukti.</div></div><div class="pf"><button class="bgo" onclick="openP('p3')">&#9989; Sudah Transfer &#8594;</button><button class="bgh" onclick="openP('p1')">&#8592; Kembali</button></div></div>
-<div class="panel" id="p3"><div class="ph"><button class="pbk" onclick="openP('p2')">&#8592;</button><div class="ptt">&#128242; Kirim Bukti via WA</div></div><div style="padding:12px 16px 0"><div class="sp"><div class="spnd"><div class="spc dn">&#10003;</div><div class="spl2 dn">Pesanan</div></div><div class="spln dn"></div><div class="spnd"><div class="spc dn">&#10003;</div><div class="spl2 dn">Bayar</div></div><div class="spln dn"></div><div class="spnd"><div class="spc ac">3</div><div class="spl2 ac">Kirim Bukti</div></div></div></div><div class="pb"><div style="text-align:center;padding:14px 0 18px"><div style="font-size:44px;margin-bottom:8px">&#127881;</div><div style="font-size:15px;font-weight:800;color:var(--gr);font-family:Georgia,serif">Transfer Berhasil!</div><div style="font-size:11px;color:var(--mt);margin-top:5px;line-height:1.5">Satu langkah lagi &mdash; kirim bukti ke admin.</div></div><div class="cs"><div class="csn">1</div><div><div class="cst">Screenshot bukti transfer</div><div class="csd">Ambil screenshot dari aplikasi banking kamu</div></div></div><div class="cs"><div class="csn">2</div><div><div class="cst">Tap tombol WhatsApp di bawah</div><div class="csd">Pesan otomatis sudah berisi detail order dan total</div></div></div><div class="cs"><div class="csn">3</div><div><div class="cst">Kirim screenshot ke admin</div><div class="csd">Admin konfirmasi 5 menit &middot; Kopi segera disiapkan &#9749;</div></div></div></div><div class="pf"><button class="bwa" id="wabtn" onclick="doWA()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> KIRIM BUKTI VIA WHATSAPP</button></div></div>
-<div class="panel" id="gp"><div class="ph"><button class="pbk" onclick="closeP('gp')">&#8592;</button><div class="ptt">&#128101; Pesan Grup</div></div><div class="pb"><div style="background:var(--cd);border:1px solid var(--bd);border-radius:9px;padding:12px 13px;margin-bottom:14px"><div style="font-size:9px;font-weight:700;color:var(--gd);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Cara Pakai</div><div style="font-size:11px;color:var(--m2);line-height:1.6">Tambah anggota &#8594; Isi nama &#8594; Pilih menu &#8594; Kirim ke WA sekaligus</div></div><div id="mlist"></div><button onclick="addMbr()" style="width:100%;background:transparent;border:2px dashed rgba(201,150,42,.3);border-radius:11px;padding:13px;font-size:12px;font-weight:700;color:var(--gd);cursor:pointer;letter-spacing:1px;-webkit-appearance:none;outline:none">+ Tambah Anggota</button></div><div class="pf"><div class="gtr"><span style="font-size:11px;color:var(--mt);letter-spacing:2px;text-transform:uppercase">Total Grup</span><span style="font-size:1.5rem;font-weight:800;color:var(--g2);font-family:Georgia,serif" id="gtot">Rp 0</span></div><button class="bwa" onclick="sendGrp()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> KIRIM ORDER GRUP VIA WA</button><button class="bgh" onclick="closeP('gp')">&#8592; Kembali</button></div></div>
-<script>
-var WA = '6282315339915';
-var cart = {};
-var mbrs = [];
-var mid = 0;
 
-var MENU = [
-  {n:'Kopi Warisan',p:22000},{n:'Kopi Arenila',p:22000},{n:'Kopi Aren OW',p:22000},
-  {n:'Kopi Istimewa',p:22000},{n:'Kopi Butterscot',p:22000},{n:'Kopi Pandan',p:22000},
-  {n:'Kopi Tetangga',p:22000},{n:'Cappuccino',p:22000},{n:'Kopi Latte',p:22000},
-  {n:'Kopi Hazelnut',p:20000},{n:'Kopi Semangka',p:20000},{n:'Kopi Caramel',p:20000},
-  {n:'Kopi Avocado',p:20000},{n:'Kopi Coklat',p:20000},{n:'Kopi Lemon',p:20000},
-  {n:'Coklat Hazelnut',p:18000},{n:'Matcha',p:15000},{n:'Strawberry',p:15000},
-  {n:'Blueberry',p:15000},{n:'Coklat Dingin',p:15000},{n:'Taro',p:15000},
-  {n:'Avocado',p:15000},{n:'Milo Original',p:15000},{n:'Leci Tea',p:15000},
-  {n:'Espresso',p:11000},{n:'Sanger Panas',p:13000},{n:'Sanger Dingin',p:16000},
-  {n:'Americano',p:11000},{n:'Americano Dingin',p:16000},{n:'Lemon Madu',p:15000},
-  {n:'Lemon Tea',p:10000},{n:'Arummanis',p:13000},{n:'Greentea',p:10000},
-  {n:'Kopi Botol 250ml',p:27000},{n:'Kopi Botol 500ml',p:50000},{n:'Kopi Botol 1000ml',p:95000}
-];
+<!-- CSS TAB INPUTS - must be BEFORE .site -->
+<input type="radio" name="tab" id="t1" checked>
+<input type="radio" name="tab" id="t2">
+<input type="radio" name="tab" id="t3">
+<input type="radio" name="tab" id="t4">
+<input type="radio" name="tab" id="t5">
+<input type="radio" name="tab" id="t6">
 
-/* ====================================================
-   SPLASH - removes from DOM completely (not just hide)
-   ==================================================== */
-function splHide() {
-  var s = document.getElementById('spl');
-  if (!s) return;
-  s.classList.add('fade');
-  setTimeout(function() {
-    if (s && s.parentNode) {
-      s.parentNode.removeChild(s);
-    }
-  }, 650);
-}
-/* Auto-dismiss after rings finish drawing (~2.3s) */
-setTimeout(splHide, 2300);
+<div class="site">
 
-/* ====================================================
-   THEME
-   ==================================================== */
-function toggleTheme() {
-  var on = document.body.classList.toggle('lm');
-  var btn = document.getElementById('thbtn');
-  if (btn) btn.innerHTML = on ? '&#9728;&#65039;' : '&#127769;';
-  try { localStorage.setItem('kot', on ? '1' : '0'); } catch(e) {}
-}
-(function initTheme() {
-  try {
-    if (localStorage.getItem('kot') === '1') {
-      document.body.classList.add('lm');
-      var btn = document.getElementById('thbtn');
-      if (btn) btn.innerHTML = '&#9728;&#65039;';
-    }
-  } catch(e) {}
-})();
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="t-left">
+      <svg viewBox="0 0 200 200" width="28" height="28" style="flex-shrink:0"><circle cx="100" cy="100" r="93" fill="none" stroke="#fff" stroke-width="7"/><circle cx="100" cy="100" r="75" fill="none" stroke="#fff" stroke-width="6.5"/><circle cx="100" cy="100" r="57" fill="none" stroke="#fff" stroke-width="6"/><circle cx="100" cy="100" r="40" fill="none" stroke="#fff" stroke-width="5.5"/><circle cx="100" cy="100" r="24" fill="none" stroke="#fff" stroke-width="5"/><circle cx="100" cy="100" r="8" fill="#fff"/></svg>
+      <div>
+        <div class="t-brand">KOPI <span>OMWARI</span></div>
+        <div class="t-loc">Cot Gapu &middot; Bireuen</div>
+      </div>
+    </div>
+    <div class="live-pill">
+      <div class="live-dot"></div>
+      <div class="live-txt">LIVE</div>
+    </div>
+  </div>
 
-/* ====================================================
-   TABS
-   ==================================================== */
-function goTab(id, tab) {
-  var tabs = document.querySelectorAll('.tab');
-  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('on');
-  tab.classList.add('on');
-  var el = document.getElementById(id);
-  var main = document.getElementById('main');
-  if (el && main) main.scrollTo({ top: el.offsetTop - 6, behavior: 'smooth' });
-}
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ti"><div class="ti-dot"></div>KOPI WARISAN <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>SEN &ndash; SAB <span class="ti-hi">09:00 &ndash; 00:00</span></div>
+      <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI BOTOL <span class="ti-hi">27K &ndash; 95K</span></div>
+      <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI WARISAN <span class="ti-hi">#1 THIS WEEK</span></div>
+      <div class="ti"><div class="ti-dot"></div>SEN &ndash; SAB <span class="ti-hi">09:00 &ndash; 00:00</span></div>
+      <div class="ti"><div class="ti-dot"></div>ORDER WA <span class="ti-hi">0823 1533 9915</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI BOTOL <span class="ti-hi">27K &ndash; 95K</span></div>
+      <div class="ti"><div class="ti-dot"></div>30+ VARIAN <span class="ti-hi">TERSEDIA</span></div>
+      <div class="ti"><div class="ti-dot"></div>KOPI DARI BIREUEN <span class="ti-hi">TERBAIK</span></div>
+    </div>
+  </div>
 
-/* ====================================================
-   CHANGE QTY (+/-) - core ordering function
-   ==================================================== */
-function cq(btn, delta) {
-  var ctrl = btn.parentElement;
-  var item = ctrl.parentElement; /* .mi element */
-  if (!item || !item.getAttribute('data-name')) return;
-  var qn = ctrl.querySelector('.qn');
-  if (!qn) return;
-  var name = item.getAttribute('data-name');
-  var price = parseInt(item.getAttribute('data-price'), 10);
-  var qty = parseInt(qn.textContent, 10) + delta;
-  if (qty < 0) qty = 0;
-  qn.textContent = qty;
-  qn.className = qty > 0 ? 'qn on' : 'qn';
-  item.classList.toggle('sel', qty > 0);
-  if (qty === 0) {
-    delete cart[name];
-  } else {
-    cart[name] = { qty: qty, price: price };
-  }
-  rb();
-}
+  <!-- TABS -->
+  <div class="tab-bar">
+    <label for="t1">&#128308; Live</label>
+    <label for="t2">&#127862; Botol</label>
+    <label for="t3">&#11088; Elit</label>
+    <label for="t4">&#9749; Medium</label>
+    <label for="t5">&#127807; Easy</label>
+    <label for="t6">&#9889; Mayoritas</label>
+  </div>
 
-/* ====================================================
-   QUICK ADD from leaderboard card tap
-   ==================================================== */
-function quickAdd(name, price) {
-  if (!cart[name]) cart[name] = { qty: 0, price: price };
-  cart[name].qty += 1;
-  var items = document.querySelectorAll('.mi');
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].getAttribute('data-name') === name) {
-      var qn = items[i].querySelector('.qn');
-      if (qn) {
-        qn.textContent = cart[name].qty;
-        qn.className = 'qn on';
-      }
-      items[i].classList.add('sel');
-      var el = items[i];
-      el.style.borderColor = 'rgba(201,150,42,0.7)';
-      setTimeout(function() { el.style.borderColor = ''; }, 800);
-      var main = document.getElementById('main');
-      if (main) main.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
-      break;
-    }
-  }
-  rb();
-}
+  <!-- CONTENT -->
+  <div class="content-area">
 
-/* ====================================================
-   REFRESH BAR - updates order bar UI
-   ==================================================== */
-function rb() {
-  var total = 0, count = 0;
-  var keys = Object.keys(cart);
-  for (var i = 0; i < keys.length; i++) {
-    total += cart[keys[i]].qty * cart[keys[i]].price;
-    count += cart[keys[i]].qty;
-  }
-  var fmt = 'Rp ' + total.toLocaleString('id-ID');
-  var el;
-  el = document.getElementById('ocnt'); if (el) el.textContent = count + ' item dipilih';
-  el = document.getElementById('otot'); if (el) el.textContent = fmt;
-  el = document.getElementById('p1t');  if (el) el.textContent = fmt;
-  el = document.getElementById('p2t');  if (el) el.textContent = fmt;
-  el = document.getElementById('obar'); if (el) el.classList.toggle('on', count > 0);
-  el = document.getElementById('gfab'); if (el) el.classList.toggle('on', count > 0);
+    <!-- PANE: LIVE -->
+    <div class="pane pane-live">
+      <div class="live-hero">
+        <div class="ley">
+          <div class="ley-dot"></div>
+          <div class="ley-txt">Weekly Performance</div>
+          <div class="ley-bdg">7 HARI</div>
+        </div>
+        <div class="lboard">
+          <div class="lbc lbc1">
+            <div class="lb-rk">#1</div>
+            <div class="lb-md">&#127945;</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Warisan</div>
+              <div class="lb-sub">Racikan Turun-Temurun &middot; Signature</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-cup">750</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bw"><div class="lb-bar"></div></div>
+          </div>
+          <div class="lbc lbc2">
+            <div class="lb-rk">#2</div>
+            <div class="lb-md">&#127946;</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Aren OW</div>
+              <div class="lb-sub">Kopi Aren Original &middot; Andalan Omwari</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-cup">433</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bw"><div class="lb-bar"></div></div>
+          </div>
+          <div class="lbc lbc3">
+            <div class="lb-rk">#3</div>
+            <div class="lb-md">&#127947;</div>
+            <div class="lb-info">
+              <div class="lb-name">Kopi Arenila</div>
+              <div class="lb-sub">Gula Aren Spesial &middot; Fan Favourite</div>
+            </div>
+            <div class="lb-right">
+              <div class="lb-cup">370</div>
+              <div class="lb-unit">Cup Terjual</div>
+            </div>
+            <div class="lb-bw"><div class="lb-bar"></div></div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box"><span class="stat-v" style="color:var(--g2)">1.723</span><span class="stat-l">Total Cup</span></div>
+          <div class="stat-box"><span class="stat-v" style="color:var(--gr)">7 Hari</span><span class="stat-l">Periode</span></div>
+          <div class="stat-box"><span class="stat-v" style="color:var(--g2)">170</span><span class="stat-l">Botol Terjual</span></div>
+        </div>
+      </div>
 
-  /* Build order items list */
-  var p1i = document.getElementById('p1i');
-  if (!p1i) return;
-  if (!keys.length) {
-    p1i.innerHTML = '<div style="text-align:center;color:var(--mt);font-size:12px;padding:22px 0">Belum ada pesanan</div>';
-    return;
-  }
-  var html = '';
-  for (var j = 0; j < keys.length; j++) {
-    var k = keys[j], it = cart[k];
-    html += '<div class="oi">';
-    html += '<div><div class="oin">' + k + '</div>';
-    html += '<div class="oid">Rp ' + it.price.toLocaleString('id-ID') + ' x ' + it.qty + '</div></div>';
-    html += '<div class="oia">Rp ' + (it.qty * it.price).toLocaleString('id-ID') + '</div>';
-    html += '</div>';
-  }
-  p1i.innerHTML = html;
-}
+      <div class="tagline">
+        <div class="tg-lbl">// Dari Bireuen, Untuk Bireuen</div>
+        <div class="tg-main">Kopi Terbaik<br>di Cot Gapu.</div>
+        <div class="tg-sub">Racikan asli, rasa yang melekat. Buka Senin&ndash;Sabtu pagi hingga tengah malam.</div>
+      </div>
 
-/* ====================================================
-   PANELS
-   ==================================================== */
-function openP(id) { rb(); var e = document.getElementById(id); if (e) e.classList.add('on'); }
-function closeP(id) { var e = document.getElementById(id); if (e) e.classList.remove('on'); }
+      <div class="hours-box">
+        <div>
+          <div class="hours-lbl">Jam Buka</div>
+          <div class="hours-val">Senin &ndash; Sabtu &nbsp;|&nbsp; 09:00 &ndash; 00:00</div>
+        </div>
+        <div style="font-size:20px">&#9749;</div>
+      </div>
 
-/* ====================================================
-   SEND WA (after transfer)
-   ==================================================== */
-function doWA() {
-  var keys = Object.keys(cart);
-  if (!keys.length) return;
-  var total = 0, lines = [];
-  for (var i = 0; i < keys.length; i++) {
-    var k = keys[i], it = cart[k];
-    total += it.qty * it.price;
-    lines.push('- ' + k + ' x' + it.qty + ' = Rp ' + (it.qty * it.price).toLocaleString('id-ID'));
-  }
-  var msg = 'Halo Kopi Omwari! Saya sudah transfer.%0A%0A'
-    + '*Detail Pesanan:*%0A' + lines.join('%0A')
-    + '%0A%0A*Total: Rp ' + total.toLocaleString('id-ID') + '*'
-    + '%0A%0A(Bukti transfer saya lampirkan)%0A%0ATerima kasih!';
-  window.open('https://wa.me/' + WA + '?text=' + msg, '_blank');
-  var ba = document.getElementById('bgamt');
-  if (ba) ba.textContent = 'Rp ' + total.toLocaleString('id-ID');
-  setTimeout(function() { openP('badgep'); }, 1200);
-}
+      <div class="pay-info">
+        <div class="pay-label">&#128179; Cara Pembayaran</div>
+        <div class="pay-bank">Bank Syariah Indonesia (BSI)</div>
+        <div class="pay-rek">7216668396</div>
+        <div class="pay-name">a.n. Ian Mahendra &nbsp;&middot;&nbsp; Kirim bukti ke admin WA</div>
+      </div>
 
-/* ====================================================
-   BADGE SHARE
-   ==================================================== */
-function shareBadge() {
-  var total = 0;
-  var keys = Object.keys(cart);
-  for (var i = 0; i < keys.length; i++) total += cart[keys[i]].qty * cart[keys[i]].price;
-  var msg = 'Saya baru order di Kopi Omwari!'
-    + '%0A%0APelanggan Setia - Cot Gapu, Bireuen, Aceh'
-    + '%0ATotal: Rp ' + total.toLocaleString('id-ID')
-    + '%0A%0Athestrategymoon-crypto.github.io/kopi-omwari';
-  window.open('https://wa.me/?text=' + msg, '_blank');
-}
+      <a class="wa-btn" href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari!%20Saya%20mau%20order%20kopi%20%F0%9F%98%8A" target="_blank">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat &amp; Order via WhatsApp
+      </a>
+      <div style="height:16px"></div>
+    </div>
 
-/* ====================================================
-   GROUP ORDER
-   ==================================================== */
-function addMbr() {
-  mid++;
-  mbrs.push({ id: mid, name: '', items: [{ m: 'Kopi Warisan', q: 1 }] });
-  renderMbrs();
-}
-function remMbr(id) {
-  mbrs = mbrs.filter(function(m) { return m.id !== id; });
-  renderMbrs();
-}
-function addMI(id) {
-  for (var i = 0; i < mbrs.length; i++) {
-    if (mbrs[i].id === id) { mbrs[i].items.push({ m: 'Kopi Warisan', q: 1 }); renderMbrs(); return; }
-  }
-}
-function remMI(id, idx) {
-  for (var i = 0; i < mbrs.length; i++) {
-    if (mbrs[i].id === id && mbrs[i].items.length > 1) { mbrs[i].items.splice(idx, 1); renderMbrs(); return; }
-  }
-}
-function updN(id, v) {
-  for (var i = 0; i < mbrs.length; i++) { if (mbrs[i].id === id) { mbrs[i].name = v; return; } }
-}
-function updI(id, idx, f, v) {
-  for (var i = 0; i < mbrs.length; i++) {
-    if (mbrs[i].id === id) {
-      if (f === 'm') mbrs[i].items[idx].m = v;
-      if (f === 'q') mbrs[i].items[idx].q = Math.max(1, parseInt(v, 10) || 1);
-      renderMbrs(); return;
-    }
-  }
-}
-function renderMbrs() {
-  var el = document.getElementById('mlist');
-  if (!el) return;
-  if (!mbrs.length) {
-    el.innerHTML = '<div style="text-align:center;color:var(--mt);font-size:12px;padding:16px 0">Belum ada anggota. Tap + untuk tambah.</div>';
-    var gt = document.getElementById('gtot'); if (gt) gt.textContent = 'Rp 0';
-    return;
-  }
-  var grand = 0, html = '';
-  for (var i = 0; i < mbrs.length; i++) {
-    var m = mbrs[i], mt = 0, rows = '';
-    for (var j = 0; j < m.items.length; j++) {
-      var item = m.items[j], mp = 22000;
-      for (var x = 0; x < MENU.length; x++) { if (MENU[x].n === item.m) { mp = MENU[x].p; break; } }
-      mt += mp * item.q;
-      var opts = '';
-      for (var x = 0; x < MENU.length; x++) {
-        opts += '<option value="' + MENU[x].n + '"' + (MENU[x].n === item.m ? ' selected' : '') + '>' + MENU[x].n + ' - ' + Math.round(MENU[x].p/1000) + 'K</option>';
-      }
-      rows += '<div class="mrow">'
-        + '<select class="msel" onchange="updI(' + m.id + ',' + j + ','m',this.value)">' + opts + '</select>'
-        + '<input type="number" class="mqty" min="1" max="99" value="' + item.q + '" onchange="updI(' + m.id + ',' + j + ','q',this.value)">'
-        + '<span class="mdel2" onclick="remMI(' + m.id + ',' + j + ')">X</span>'
-        + '</div>';
-    }
-    grand += mt;
-    html += '<div class="mc"><div class="mhd">'
-      + '<input class="minp" type="text" placeholder="Nama anggota" value="' + m.name + '" oninput="updN(' + m.id + ',this.value)">'
-      + '<span style="font-size:11px;font-weight:700;color:var(--gd);flex-shrink:0">Rp ' + mt.toLocaleString('id-ID') + '</span>'
-      + '<span class="mdel" onclick="remMbr(' + m.id + ')">Del</span>'
-      + '</div>' + rows
-      + '<div class="ami" onclick="addMI(' + m.id + ')">+ Tambah menu</div>'
-      + '</div>';
-  }
-  el.innerHTML = html;
-  var gt = document.getElementById('gtot'); if (gt) gt.textContent = 'Rp ' + grand.toLocaleString('id-ID');
-}
-function sendGrp() {
-  if (!mbrs.length) { alert('Tambah anggota dulu!'); return; }
-  var gt = 0, lines = [];
-  for (var i = 0; i < mbrs.length; i++) {
-    var m = mbrs[i], name = m.name || 'Anggota', il = [];
-    for (var j = 0; j < m.items.length; j++) {
-      var item = m.items[j], mp = 22000;
-      for (var x = 0; x < MENU.length; x++) { if (MENU[x].n === item.m) { mp = MENU[x].p; break; } }
-      var sub = mp * item.q; gt += sub;
-      il.push('   - ' + item.m + ' x' + item.q + ' = Rp ' + sub.toLocaleString('id-ID'));
-    }
-    lines.push('*' + name + '*%0A' + il.join('%0A'));
-  }
-  var msg = 'Halo Kopi Omwari! Order GRUP:%0A%0A' + lines.join('%0A%0A') + '%0A%0ATotal: Rp ' + gt.toLocaleString('id-ID') + '%0ATerima kasih!';
-  window.open('https://wa.me/' + WA + '?text=' + msg, '_blank');
-}
+    <!-- PANE: BOTOL -->
+    <div class="pane pane-botol">
+      <div class="msec">
+        <div class="mhdr"><div class="mbdg bot">&#127862; Kopi Botol</div><div class="mln"></div></div>
+        <div class="botol-bnr">
+          <span style="font-size:22px">&#127862;</span>
+          <div>
+            <div class="bnr-title">WARISAN &middot; ARENILA &middot; PANDAN</div>
+            <div class="bnr-sub">Sebutkan varian saat order &middot; Tersedia kapanpun</div>
+          </div>
+        </div>
+        <a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Botol%20250ml%20harga%20Rp%2027.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Botol 250ml</div><div class="mi-sub">Warisan / Arenila / Pandan &#183; Sebutkan varian</div></div><div class="mi-price">27K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Botol%20500ml%20harga%20Rp%2050.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Botol 500ml</div><div class="mi-sub">Warisan / Arenila / Pandan &#183; Sebutkan varian</div></div><div class="mi-price">50K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Botol%201000ml%20harga%20Rp%2095.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Botol 1000ml</div><div class="mi-sub">Warisan / Arenila / Pandan &#183; Sebutkan varian</div></div><div class="mi-price">95K</div><div class="mi-arrow">&#8594;</div></a>
+      </div>
+    </div>
 
-/* INIT */
-rb();
-renderMbrs();
-</script>
+    <!-- PANE: ELIT -->
+    <div class="pane pane-elit">
+      <div class="msec">
+        <div class="mhdr"><div class="mbdg elit">&#11088; Varian Elit</div><div class="mln"></div></div>
+        <a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Warisan%20harga%20Rp%2022.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Warisan</div><div class="mi-sub">Racikan turun-temurun &#183; Signature</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Arenila%20harga%20Rp%2022.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Arenila</div><div class="mi-sub">Gula aren spesial &#183; Fan favourite</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Aren%20OW%20harga%20Rp%2022.000" class="menu-item feat" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Aren OW</div><div class="mi-sub">Kopi aren original &#183; Andalan Omwari</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Istimewa%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Istimewa</div><div class="mi-sub">Kreasi barista &#183; Eksklusif</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Butterscot%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Butterscot</div><div class="mi-sub">Lembut manis &#183; Butterscotch</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Pandan%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Pandan</div><div class="mi-sub">Aroma segar &#183; Herbal</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Tetangga%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Tetangga</div><div class="mi-sub">Khas Omwari &#183; Unik</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Cappuccino%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Cappuccino</div><div class="mi-sub">Milk foam &#183; Italian style</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Latte%20harga%20Rp%2022.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Latte</div><div class="mi-sub">Smooth &#183; Creamy milk</div></div><div class="mi-price">22K</div><div class="mi-arrow">&#8594;</div></a>
+      </div>
+    </div>
+
+    <!-- PANE: MEDIUM -->
+    <div class="pane pane-medium">
+      <div class="msec">
+        <div class="mhdr"><div class="mbdg med">&#9749; Varian Medium</div><div class="mln"></div></div>
+        <a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Hazelnut%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Hazelnut</div><div class="mi-sub">Nutty &#183; Smooth</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Semangka%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Semangka</div><div class="mi-sub">Segar &#183; Fruity fusion</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Caramel%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Caramel</div><div class="mi-sub">Sweet &#183; Karamel asli</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Avocado%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Avocado</div><div class="mi-sub">Creamy &#183; Alpukat segar</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Coklat%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Coklat</div><div class="mi-sub">Rich &#183; Chocolatey</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Kopi%20Lemon%20harga%20Rp%2020.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Kopi Lemon</div><div class="mi-sub">Segar &#183; Citrus kick</div></div><div class="mi-price">20K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Coklat%20Hazelnut%20harga%20Rp%2018.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Coklat Hazelnut</div><div class="mi-sub">Non-coffee &#183; Premium blend</div></div><div class="mi-price">18K</div><div class="mi-arrow">&#8594;</div></a>
+      </div>
+    </div>
+
+    <!-- PANE: EASY -->
+    <div class="pane pane-easy">
+      <div class="msec">
+        <div class="mhdr"><div class="mbdg esy">&#127807; Varian Easy</div><div class="mln"></div></div>
+        <a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Matcha%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Matcha</div><div class="mi-sub">Green tea &#183; Earthy</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Strawberry%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Strawberry</div><div class="mi-sub">Fruity &#183; Manis segar</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Blueberry%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Blueberry</div><div class="mi-sub">Fruity &#183; Antioksidan</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Coklat%20Dingin%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Coklat Dingin</div><div class="mi-sub">Ice cold &#183; Chocolatey</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Taro%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Taro</div><div class="mi-sub">Purple &#183; Creamy talas</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Avocado%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Avocado</div><div class="mi-sub">Non-coffee &#183; Creamy</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Milo%20Original%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Milo Original</div><div class="mi-sub">Classic &#183; Timeless</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Leci%20Tea%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Leci Tea</div><div class="mi-sub">Fruity tea &#183; Refreshing</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a>
+      </div>
+    </div>
+
+    <!-- PANE: MAYORITAS -->
+    <div class="pane pane-mayoritas">
+      <div class="msec">
+        <div class="mhdr"><div class="mbdg maj">&#9889; Varian Mayoritas</div><div class="mln"></div></div>
+        <a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Espresso%20harga%20Rp%2011.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Espresso</div><div class="mi-sub">Pure shot &#183; Strong</div></div><div class="mi-price">11K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Sanger%20Panas%20harga%20Rp%2013.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Sanger Panas</div><div class="mi-sub">Khas Aceh &#183; Hot</div></div><div class="mi-price">13K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Sanger%20Dingin%20harga%20Rp%2016.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Sanger Dingin</div><div class="mi-sub">Khas Aceh &#183; Iced</div></div><div class="mi-price">16K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Americano%20harga%20Rp%2011.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Americano</div><div class="mi-sub">Classic &#183; Hot</div></div><div class="mi-price">11K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Americano%20Dingin%20harga%20Rp%2016.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Americano Dingin</div><div class="mi-sub">Classic &#183; Iced</div></div><div class="mi-price">16K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Lemon%20Madu%20harga%20Rp%2015.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Lemon Madu</div><div class="mi-sub">Segar &#183; Natural honey</div></div><div class="mi-price">15K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Lemon%20Tea%20harga%20Rp%2010.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Lemon Tea</div><div class="mi-sub">Light &#183; Refreshing</div></div><div class="mi-price">10K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Arummanis%20harga%20Rp%2013.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Arummanis</div><div class="mi-sub">Manis &#183; Khas lokal</div></div><div class="mi-price">13K</div><div class="mi-arrow">&#8594;</div></a><a href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari%2C%20saya%20mau%20order%20Greentea%20harga%20Rp%2010.000" class="menu-item" target="_blank"><div class="mi-info"><div class="mi-name">Greentea</div><div class="mi-sub">Light &#183; Herbal</div></div><div class="mi-price">10K</div><div class="mi-arrow">&#8594;</div></a>
+      </div>
+    </div>
+
+  </div><!-- end content-area -->
+
+  <!-- FIXED BOTTOM WA BAR -->
+  <div class="bottom-bar">
+    <a class="bottom-wa" href="https://wa.me/6282315339915?text=Halo%20Kopi%20Omwari!%20Saya%20mau%20order%20kopi%20%F0%9F%98%8A" target="_blank">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      ORDER SEKARANG &mdash; 0823 1533 9915
+    </a>
+  </div>
+
+</div><!-- end .site -->
+
 </body>
 </html>
